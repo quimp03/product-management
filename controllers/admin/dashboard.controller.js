@@ -1,3 +1,3 @@
-module.exports.dashboard = (req, res) => {
+module.exports.index = (req, res) => {
     res.render("admin/pages/dashboard/index")
 }

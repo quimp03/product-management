@@ -1,5 +1,6 @@
-const routerDashboard = require("./dashboard.route")
+const dashboardRoutes  = require("./dashboard.route")
+const systemConfig = require("../../config/system")
 module.exports = (app) => {
-    const PATH_ADMIN  = "/admin"
-    app.use(PATH_ADMIN + "/dashboard", routerDashboard)
+    const PATH_ADMIN = `/${systemConfig.prefixAdmin}`
+    app.use(PATH_ADMIN + "/dashboard", dashboardRoutes)
 }
