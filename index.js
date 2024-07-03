@@ -10,8 +10,9 @@ const routerAdmin = require("./routers/admin/index.route")
 database.connect()
 app.use(express.static('public'));
 app.set('view engine', 'pug');
+//set đi thẳng vào folder trong view  
 app.set('views', './views');
-//set bien locals
+//set bien locals thông qua middleware
 app.use(prefixAdmin)
 // routes
 routeClient(app)
