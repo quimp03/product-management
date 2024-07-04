@@ -2,7 +2,6 @@
 const listButtonFilterStatus = document.querySelectorAll("[button-status]")
 if(listButtonFilterStatus.length > 0){
     const url = new URL(window.location.href)
-    console.log(url)
     listButtonFilterStatus.forEach(button => {
         button.addEventListener("click", () => {
             const status = button.getAttribute("button-status")
