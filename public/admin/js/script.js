@@ -19,7 +19,6 @@ if(listButtonFilterStatus.length > 0){
 const formSearch = document.querySelector("#form-search");
 if(formSearch) {
   let url = new URL(window.location.href);
-
   formSearch.addEventListener("submit", (event) => {
     event.preventDefault();
     const keyword = event.target.elements.keyword.value;
