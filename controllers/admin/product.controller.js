@@ -1,5 +1,6 @@
 const Product = require("../../model/product.model")
 const filterHelper = require("../../helper/filter.helper")
+const paginationHelper = require("../../helper/pagination.helper")
 module.exports.index = async(req, res) => {
     const find = {
         deleted: false
@@ -15,20 +16,9 @@ module.exports.index = async(req, res) => {
         find.title = regex
     }
     //pagination
-    const objectPagination = {
-            currentPage: 1,
-            limitItems: 3
-    }
-    //Lay page tren router
-    if(req.query.page){
-            objectPagination.currentPage = parseInt(req.query.page)
-    }
-    //cong thuc skip theo so page
-    objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItems
-    //dem ban ghi theo dk
     const countRecord = await Product.countDocuments(find)
-    //lam tron so page
-    objectPagination.totalPage = Math.ceil(countRecord/objectPagination.limitItems)
+    const objectPagination = paginationHelper(req, countRecord)
+    //dem ban ghi theo dk
     const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
     res.render("admin/pages/product/index.pug", {
         pageTitle: "Danh sách sản phẩm", 
