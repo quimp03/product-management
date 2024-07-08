@@ -14,7 +14,7 @@ if(listButtonFilterStatus.length > 0){
         })
     })
 }
-//end filter status
+// end filter status
 // Form Search
 const formSearch = document.querySelector("#form-search");
 if(formSearch) {
@@ -32,3 +32,18 @@ if(formSearch) {
   });
 }
 // End Form Search
+//pagination
+const listButtonsPagination = document.querySelectorAll("[button-pagination]")
+if(listButtonsPagination.length > 0 ){
+    const url = new URL(window.location.href)
+    listButtonsPagination.forEach(button => {
+        button.addEventListener("click", () => {
+            const page = button.getAttribute("button-pagination")
+            if(page){
+                url.searchParams.set("page", page)
+            }
+            window.location.href = url.href
+        })
+    })
+}
+//end pagination
