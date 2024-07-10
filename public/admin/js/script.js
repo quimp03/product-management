@@ -47,3 +47,20 @@ if(listButtonsPagination.length > 0 ){
     })
 }
 //end pagination
+//change status
+const listButtonChangeStatus = document.querySelectorAll("[button-change-status]")
+if(listButtonChangeStatus.length > 0 ){
+  const formChangeStatus = document.querySelector("[form-change-status]")
+  listButtonChangeStatus.forEach(button => {
+    button.addEventListener("click", () => {
+      const status = button.getAttribute("data-status")
+      const id = button.getAttribute("data-id")
+      const path = formChangeStatus.getAttribute("data-path")
+      console.log(path)
+      const action = `${path}/${status}/${id}?_method=PATCH`
+      formChangeStatus.action = action
+      formChangeStatus.submit()
+    })
+  })
+}
+//end change status
