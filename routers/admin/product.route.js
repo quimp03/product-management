@@ -3,4 +3,5 @@ const controller = require("../../controllers/admin/product.controller")
 const router = express()
 router.get("/", controller.index)
 router.patch("/:status/:id", controller.changeStatus)
+router.patch("/change-multi", controller.changeMultiPatch)
 module.exports = router

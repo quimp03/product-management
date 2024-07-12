@@ -39,3 +39,21 @@ module.exports.changeStatus = async(req,res) => {
     })
     res.redirect("back")
 }
+module.exports.changeMultiPatch = async(req, res) => {
+    const type = req.body.type
+    let ids = req.body.ids
+    ids = ids.split(", ")
+    switch(type){
+        case "active":
+        case "inactive":
+            await Product.updateMany({
+            _id: {$in: ids}
+            }, {
+                status: type
+            })
+            break
+        default: 
+            break
+    }
+    res.redirect("back")
+}

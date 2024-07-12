@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const database = require("./config/database.js")
 const prefixAdmin = require("./middlewares/admin/prefixAdmin.middleware.js")
 const methodOverride = require("method-override")
+const bodyParser = require("body-parser")
 dotenv.config()
 const app = express();
 const port = process.env.PORT;
@@ -15,8 +16,9 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 //set bien locals thông qua middleware
 app.use(prefixAdmin)
-// routes
 //override
+//body-parser
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 routeClient(app)
 routerAdmin(app)

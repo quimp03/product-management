@@ -64,3 +64,56 @@ if(listButtonChangeStatus.length > 0 ){
   })
 }
 //end change status
+//check-box multi
+const checkBoxMulti = document.querySelector("[checkbox-multi]")
+if(checkBoxMulti){
+  const checkBoxAll = checkBoxMulti.querySelector("input[name='checkall']")
+  const listCheckBox = checkBoxMulti.querySelectorAll("input[name='id']")
+  checkBoxAll.addEventListener("click", () => {
+    if(checkBoxAll.checked){
+      listCheckBox.forEach(input =>{
+        input.checked = true
+      })
+    }else{
+      listCheckBox.forEach(input => {
+        input.checked = false
+      })
+    }
+  })
+
+  listCheckBox.forEach(input => {
+    input.addEventListener("click", () => {
+      const lengthListInputChecked = checkBoxMulti.querySelectorAll("input[name='id']:checked").length
+      const lengthListCheckBox = listCheckBox.length
+      if(lengthListCheckBox == lengthListInputChecked){
+        checkBoxAll.checked = true
+      }else{
+        checkBoxAll.checked = false
+      }
+    })
+  })
+}
+//end check-box multi
+//form-change-multi
+const formChangeMulti = document.querySelector("[form-change-multi]")
+if(formChangeMulti){
+    const ids = []
+    formChangeMulti.addEventListener("submit", (event) => {
+      event.preventDefault()
+      const listCheckedMulti = document.querySelectorAll("input[name='id']:checked")
+      if(listCheckedMulti.length > 0){
+        listCheckedMulti.forEach(input => {
+          const id = input.getAttribute("value")
+          ids.push(id)
+        })
+          const stringIds = ids.join(", ")
+          console.log(typeof(stringIds))
+          let input = document.querySelector("input[name='ids']")
+          input.value = stringIds
+          formChangeMulti.submit()
+      }else{
+        alert("Vui lòng nhập ít nhất một bản ghi!")
+      }
+    })
+}
+//end-form-change-multi
