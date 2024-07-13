@@ -107,13 +107,27 @@ if(formChangeMulti){
           ids.push(id)
         })
           const stringIds = ids.join(", ")
-          console.log(typeof(stringIds))
           let input = document.querySelector("input[name='ids']")
           input.value = stringIds
           formChangeMulti.submit()
       }else{
-        alert("Vui lòng nhập ít nhất một bản ghi!")
+        alert("Vui lòng nhập ít nhất một bản ghi!");
       }
     })
 }
 //end-form-change-multi
+//button-delete-item
+const listButtonDelete = document.querySelectorAll("[button-delete-item]")
+if(listButtonDelete.length > 0){
+  const formDeleteItem = document.querySelector("[form-delete]")
+  listButtonDelete.forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-id")
+      const dataPath = formDeleteItem.getAttribute("data-path")
+      const action = `${dataPath}/${id}?_method=DELETE`
+      formDeleteItem.action = action
+      formDeleteItem.submit()
+    })
+  })
+}
+//end-button-delete-item
