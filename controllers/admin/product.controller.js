@@ -52,6 +52,18 @@ module.exports.changeMultiPatch = async(req, res) => {
                 status: type
             })
             break
+        case "restore":
+            await Product.updateMany({
+                _id: {$in: ids}
+            }, {
+                deleted: false
+            })
+            break
+        case "deletevv":
+            await Product.deleteMany({
+                _id: {$in: ids}
+            })
+            break
         default: 
             break
     }
@@ -70,13 +82,19 @@ module.exports.trash = async(req, res) =>{
     const find = {
         deleted: true
     }
+    //search
+    if(req.query.keyword){
+        const regex = new RegExp(req.query.keyword,"i")
+        find.title = regex
+    }
     const countRecord = await Product.countDocuments(find)
     const objectPagination = paginationHelper(req, countRecord)
     const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
     res.render("admin/pages/product/trash", {
         pageTitle: "Trang thùng rác",
         products: products,
-        objectPagination: objectPagination
+        objectPagination: objectPagination,
+        keyword: req.query.keyword
     })
 }
 module.exports.deleteItemVv = async(req, res) => {
@@ -88,11 +106,15 @@ module.exports.deleteItemVv = async(req, res) => {
 }
 module.exports.restoreItemPatch = async (req, res) => {
     const id = req.params.id
-    await Product.updateOne({
-        _id: id
-    },
-    {
-        deleted: false
-    })
-    res.redirect("back")
-  };
+    try {
+        await Product.updateOne({
+            _id: id
+        },
+        {
+            deleted: false
+        })
+        res.redirect("back")
+    } catch (error) {
+        console.log(error)
+    }
+  }; 

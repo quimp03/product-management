@@ -1,9 +1,35 @@
 extends ../../layouts/default.pug
 include ../../mixins/pagination.pug
+include ../../mixins/search.pug
 block main
   h1(class="mb-4") Trang thùng rác
   .card.mb-3
     .card-header Danh sách
+    .card-body
+      .row 
+        .col-12
+          +search(keyword)
+    .card-body
+      form(
+        action=`/${prefixAdmin}/products/change-multi?_method=PATCH`
+        method="POST"
+				form-change-multi
+      ) 
+        .d-flex.align-items-start
+          .form-group
+            select(name="type" class="form-control")
+              option(value="active") Hoạt động
+              option(value="inactive") Dừng hoạt động
+              option(value="restore") Khôi phục
+              option(value="deletevv") Xóa vĩnh viễn
+          .form-group.d-none
+            input(
+              type="text"
+              name="ids"
+              value=""
+              class="form-control"
+            )
+          button(type="submit" class="btn btn-primary") Áp dụng
       table(
         class="table table-hover table-sm"
         checkbox-multi

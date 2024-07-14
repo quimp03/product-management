@@ -58,3 +58,10 @@
     color: green;
   }
   /* end trash */
+  .col-12{
+    position: absolute;
+    font-size: 25px;
+    right: 20px;
+    top: 110px;
+    width: 300px;
+  }
