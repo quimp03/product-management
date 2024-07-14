@@ -56,7 +56,6 @@ if(listButtonChangeStatus.length > 0 ){
       const status = button.getAttribute("data-status")
       const id = button.getAttribute("data-id")
       const path = formChangeStatus.getAttribute("data-path")
-      console.log(path)
       const action = `${path}/${status}/${id}?_method=PATCH`
       formChangeStatus.action = action
       formChangeStatus.submit()
@@ -131,3 +130,33 @@ if(listButtonDelete.length > 0){
   })
 }
 //end-button-delete-item
+//delete-item-vv
+const listButtonItemDeleteVv = document.querySelectorAll("[button-delete-item-vv]")
+if(listButtonItemDeleteVv.length > 0){
+  const formDeleteItemVv = document.querySelector("[form-delete-vv]") 
+  listButtonItemDeleteVv.forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-id")
+      const dataPath = formDeleteItemVv.getAttribute("data-path")
+      const action = `${dataPath}/${id}?_method=DELETE`
+      formDeleteItemVv.action = action 
+      formDeleteItemVv.submit()
+    })
+  })
+}
+//end-delete-item-vv
+//restore-item
+const listButtonRestoreItem = document.querySelectorAll("[button-restore-item]")
+if(listButtonRestoreItem.length > 0){
+  const formRestoreItem = document.querySelector("[form-restore-item]")
+  listButtonRestoreItem.forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-id")
+      const dataPath = formRestoreItem.getAttribute("data-path")
+      const action = `${dataPath}/${id}?_method=PATCH`
+      formRestoreItem.action = action
+      formRestoreItem.submit()
+    })
+  })
+}
+//end restore-item

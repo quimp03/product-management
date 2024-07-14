@@ -47,3 +47,14 @@
     border-bottom: 1px solid #515151;
   }
   /* End Sider */
+  /* trash */
+  .trash{
+    position: absolute;
+    font-size: 25px;
+    right: 20px;
+    color: green;
+  }
+  .fa-trash{
+    color: green;
+  }
+  /* end trash */

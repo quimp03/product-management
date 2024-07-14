@@ -16,9 +16,9 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 //set bien locals thông qua middleware
 app.use(prefixAdmin)
-//override
 //body-parser
 app.use(bodyParser.urlencoded({ extended: false }))
+//override
 app.use(methodOverride('_method'))
 routeClient(app)
 routerAdmin(app)

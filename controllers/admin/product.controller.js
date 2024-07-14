@@ -66,3 +66,33 @@ module.exports.deleteItem = async(req, res) =>{
     })
     res.redirect("back")
 }
+module.exports.trash = async(req, res) =>{
+    const find = {
+        deleted: true
+    }
+    const countRecord = await Product.countDocuments(find)
+    const objectPagination = paginationHelper(req, countRecord)
+    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
+    res.render("admin/pages/product/trash", {
+        pageTitle: "Trang thùng rác",
+        products: products,
+        objectPagination: objectPagination
+    })
+}
+module.exports.deleteItemVv = async(req, res) => {
+    const id = req.params.id 
+    await Product.deleteOne({
+        _id: id
+    })
+    res.redirect("back")
+}
+module.exports.restoreItemPatch = async (req, res) => {
+    const id = req.params.id
+    await Product.updateOne({
+        _id: id
+    },
+    {
+        deleted: false
+    })
+    res.redirect("back")
+  };
