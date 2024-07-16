@@ -19,7 +19,7 @@ module.exports.index = async(req, res) => {
     const countRecord = await Product.countDocuments(find)
     const objectPagination = paginationHelper(req, countRecord)
     //dem ban ghi theo dk
-    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
+    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip).sort({position: "asc"})
     res.render("admin/pages/product/index.pug", {
         pageTitle: "Danh sách sản phẩm", 
         products: products,
@@ -52,6 +52,27 @@ module.exports.changeMultiPatch = async(req, res) => {
                 status: type
             })
             break
+        case "change-position":
+            for (const item of ids) {
+                const newArr = item.split("-")
+                const id = newArr[0]
+                const position = newArr[1]
+                await Product.updateOne({
+                    _id: id
+                }, {
+                    position: position
+                })
+            }
+            // for (const item of ids) {
+            //     let [id, position] = item.split("-");
+            //     position = parseInt(position);
+            //     await Product.updateOne({
+            //       _id: id
+            //     }, {
+            //       position: position
+            //     });
+            //   }
+              break;
         case "deleteAll":
             await Product.updateMany({
                 _id: {$in: ids}

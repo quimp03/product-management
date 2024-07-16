@@ -104,7 +104,14 @@ if(formChangeMulti){
       if(listCheckedMulti.length > 0){
         listCheckedMulti.forEach(input => {
           const id = input.getAttribute("value")
-          ids.push(id)
+          //dựa vào hàng có input được checked lấy nguyên hàng đó và tìm đến position
+          if(type == "change-position"){
+            const position = input.closest("tr").querySelector("input[name='position']").value
+            ids.push(`${id}-${position}`)
+            console.log(ids)
+          }else{
+            ids.push(id)
+          }
         })
           const stringIds = ids.join(", ")
           let input = document.querySelector("input[name='ids']")
@@ -113,7 +120,7 @@ if(formChangeMulti){
             const isConfirm = confirm("Bạn có chắc muốn xóa những bản ghi này?")
             if(!isConfirm){
               return
-            }
+            } 
           }
           formChangeMulti.submit()
       }else{
