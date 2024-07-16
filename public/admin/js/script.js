@@ -99,6 +99,7 @@ if(formChangeMulti){
     const ids = []
     formChangeMulti.addEventListener("submit", (event) => {
       event.preventDefault()
+      const type = formChangeMulti.querySelector("select[name='type']").value
       const listCheckedMulti = document.querySelectorAll("input[name='id']:checked")
       if(listCheckedMulti.length > 0){
         listCheckedMulti.forEach(input => {
@@ -108,6 +109,12 @@ if(formChangeMulti){
           const stringIds = ids.join(", ")
           let input = document.querySelector("input[name='ids']")
           input.value = stringIds
+          if(type == "deleteAll"){
+            const isConfirm = confirm("Bạn có chắc muốn xóa những bản ghi này?")
+            if(!isConfirm){
+              return
+            }
+          }
           formChangeMulti.submit()
       }else{
         alert("Vui lòng nhập ít nhất một bản ghi!");

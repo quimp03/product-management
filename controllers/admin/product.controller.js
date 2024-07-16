@@ -52,6 +52,13 @@ module.exports.changeMultiPatch = async(req, res) => {
                 status: type
             })
             break
+        case "deleteAll":
+            await Product.updateMany({
+                _id: {$in: ids}
+            }, {
+                deleted: true
+            })
+            break
         case "restore":
             await Product.updateMany({
                 _id: {$in: ids}
