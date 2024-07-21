@@ -4,6 +4,9 @@ const database = require("./config/database.js")
 const prefixAdmin = require("./middlewares/admin/prefixAdmin.middleware.js")
 const methodOverride = require("method-override")
 const bodyParser = require("body-parser")
+const flash = require("express-flash")
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
 dotenv.config()
 const app = express();
 const port = process.env.PORT;
@@ -19,6 +22,10 @@ app.use(prefixAdmin)
 //body-parser
 app.use(bodyParser.urlencoded({ extended: false }))
 //override
+//flash
+app.use(cookieParser('NCTUMPQKMT'));
+app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
 app.use(methodOverride('_method'))
 routeClient(app)
 routerAdmin(app)

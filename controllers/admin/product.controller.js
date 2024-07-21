@@ -37,7 +37,9 @@ module.exports.changeStatus = async(req,res) => {
     }, {
         status: status
     })
+    req.flash("success", "Cập nhật trạng thái thành công!")
     res.redirect("back")
+    
 }
 module.exports.changeMultiPatch = async(req, res) => {
     const type = req.body.type
@@ -53,6 +55,7 @@ module.exports.changeMultiPatch = async(req, res) => {
             })
             break
         case "change-position":
+            // c2
             for (const item of ids) {
                 const newArr = item.split("-")
                 const id = newArr[0]
@@ -63,6 +66,7 @@ module.exports.changeMultiPatch = async(req, res) => {
                     position: position
                 })
             }
+            // c2
             // for (const item of ids) {
             //     let [id, position] = item.split("-");
             //     position = parseInt(position);
