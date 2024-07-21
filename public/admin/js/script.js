@@ -173,3 +173,21 @@ if(listButtonRestoreItem.length > 0){
   })
 }
 //end restore-item
+//show-alert
+const showAlert = document.querySelector("[show-alert]")
+if(showAlert){
+  let time = showAlert.getAttribute("data-time")
+  time = parseInt(time)
+  // sau time thi an no di
+  setTimeout(() => {
+    showAlert.classList.add("alert-hidden")
+  }, time)
+  //khi click vao se an luon
+  const closeAlert = document.querySelector("[close-alert]")
+  if(closeAlert){
+    closeAlert.addEventListener("click", ()=> {
+      showAlert.classList.add("alert-hidden")
+    })
+  }
+}
+//end show-alert
