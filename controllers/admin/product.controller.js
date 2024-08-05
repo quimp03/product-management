@@ -53,6 +53,7 @@ module.exports.changeMultiPatch = async(req, res) => {
             }, {
                 status: type
             })
+            req.flash("success", "Cập nhật trạng thái thành công!")
             break
         case "change-position":
             // c2
@@ -66,6 +67,7 @@ module.exports.changeMultiPatch = async(req, res) => {
                     position: position
                 })
             }
+            req.flash("success", "Thay đổi vị trí sản phẩm thành công!")
             // c2
             // for (const item of ids) {
             //     let [id, position] = item.split("-");
@@ -83,6 +85,7 @@ module.exports.changeMultiPatch = async(req, res) => {
             }, {
                 deleted: true
             })
+            res.flash("success", "Xóa các sản phẩm thành công!")
             break
         case "restore":
             await Product.updateMany({
@@ -90,11 +93,13 @@ module.exports.changeMultiPatch = async(req, res) => {
             }, {
                 deleted: false
             })
+            res.flash("success", "Khôi phục các sản phẩm thành công!")
             break
         case "deletevv":
             await Product.deleteMany({
                 _id: {$in: ids}
             })
+            res.flash("success", "Sản phẩm ")
             break
         default: 
             break
@@ -134,6 +139,10 @@ module.exports.deleteItemVv = async(req, res) => {
     await Product.deleteOne({
         _id: id
     })
+    const nameSp = Product.findOne({
+        _id: id
+    })
+    res.flash("success", `Xóa sản phẩm ${nameSp.title} thành công!`)
     res.redirect("back")
 }
 module.exports.restoreItemPatch = async (req, res) => {
