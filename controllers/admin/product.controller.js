@@ -1,6 +1,7 @@
 const Product = require("../../model/product.model")
 const filterHelper = require("../../helper/filter.helper")
 const paginationHelper = require("../../helper/pagination.helper")
+const systemConfig = require("../../config/system")
 module.exports.index = async(req, res) => {
     const find = {
         deleted: false
@@ -163,4 +164,19 @@ module.exports.createItem = async(req, res) => {
     res.render("admin/pages/product/create.pug", {
         pageTitle: "Tạo sản phẩm"
     })
+}
+module.exports.createPost = async(req, res) => {
+    req.body.price = parseInt(req.body.price)
+    req.body.discountPercentage = parseInt(req.body.discountPercentage)
+    req.body.stock = parseInt(req.body.stock)
+    if(req.body.position){
+        req.body.position = parseInt(req.body.position)
+    }else{
+        const countProduct = await Product.countDocuments()
+        req.body.position = countProduct + 1
+    }
+    const product = new Product(req.body)
+    await product.save()
+    req.flash('success', "Thêm sản phẩm thành công!")
+    res.redirect(`/${systemConfig.prefixAdmin}/products`)
 }

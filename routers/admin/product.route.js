@@ -9,4 +9,5 @@ router.get("/trash", controller.trash)
 router.delete("/deleteVv/:id", controller.deleteItemVv)
 router.patch("/:id", controller.restoreItemPatch)
 router.get("/create", controller.createItem)
+router.post("/create", controller.createPost)
 module.exports = router
