@@ -8,4 +8,5 @@ router.delete("/delete/:id", controller.deleteItem)
 router.get("/trash", controller.trash)
 router.delete("/deleteVv/:id", controller.deleteItemVv)
 router.patch("/:id", controller.restoreItemPatch)
+router.get("/create", controller.createItem)
 module.exports = router

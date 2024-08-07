@@ -158,4 +158,9 @@ module.exports.restoreItemPatch = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-  }; 
+  };
+module.exports.createItem = async(req, res) => {
+    res.render("admin/pages/product/create.pug", {
+        pageTitle: "Tạo sản phẩm"
+    })
+}
