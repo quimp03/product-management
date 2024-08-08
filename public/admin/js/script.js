@@ -191,3 +191,19 @@ if(showAlert){
   }
 }
 //end show-alert
+
+//upload-image
+const upload = document.querySelector("[upload-image]")
+if(upload){
+  const uploadImageInput = document.querySelector("[upload-image-input]")
+  const uploadImagePreview = document.querySelector("[upload-image-preview]")
+  console.log(uploadImageInput)
+  console.log(uploadImagePreview)
+  uploadImageInput.addEventListener("change", () => {
+    const file = uploadImageInput.files[0]
+    if(file){
+      uploadImagePreview.src = URL.createObjectURL(file)
+    }
+  })
+}
+//end upload-image

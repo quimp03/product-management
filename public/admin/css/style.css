@@ -49,9 +49,7 @@
   /* End Sider */
   /* trash */
   .trash{
-    position: absolute;
-    font-size: 25px;
-    right: 20px;
+    font-size: 23px;
     color: green;
   }
   .fa-trash{
@@ -91,3 +89,18 @@
   .addpr{
     margin-left: 200px;
   }
+
+  /* image-preview */
+.image-preview {
+  width: 150px;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.image-preview[src=""] {
+  display: none;
+}
+/* End image-preview */

@@ -44,8 +44,7 @@ block main
             href=`/${prefixAdmin}/products/create`
             class="btn btn-outline-success addpr"
           ) + Thêm mới
-      .trash
-        a(href=`/${prefixAdmin}/products/trash`) <i class="fa-solid fa-trash"></i> 
+      
       table(
         class="table table-hover table-sm"
         checkbox-multi
@@ -61,6 +60,9 @@ block main
             th Vị trí
             th Trạng thái
             th Hành động
+            th
+              .trash
+                a(href=`/${prefixAdmin}/products/trash`) <i class="fa-solid fa-trash"></i> 
         tbody
             each item, index in products
                 tr 

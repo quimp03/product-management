@@ -175,10 +175,10 @@ module.exports.createPost = async(req, res) => {
         const countProduct = await Product.countDocuments()
         req.body.position = countProduct + 1
     }
-    const product = new Product(req.body)
     if(req.file){
         req.body.thumbnail = `/uploads/${req.file.filename}`
     }
+    const product = new Product(req.body)
     await product.save()
     req.flash('success', "Thêm sản phẩm thành công!")
     res.redirect(`/${systemConfig.prefixAdmin}/products`)
