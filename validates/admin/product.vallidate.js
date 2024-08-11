@@ -4,7 +4,7 @@ module.exports.createPost = (req, res, next) => {
         res.redirect("back")
         return
     }
-    if(!req.body.title < 5){
+    if(req.body.title < 5){
         req.flash("error" ,"Vui lòng nhập ít nhất 5 kí tự!")
         res.redirect("back")
         return
