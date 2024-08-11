@@ -189,7 +189,7 @@ module.exports.edit = async(req, res) => {
         _id: id,
         deleted: false
     })
-    res.render("admin/pages/product/edit", {
+    res.render(`${systemConfig.prefixAdmin}/pages/product/edit`, {
         pageTitle: "Trang chỉnh sửa",
         product: product
     })
@@ -209,4 +209,15 @@ module.exports.editPost = async(req, res) => {
     }, req.body)
     req.flash("success", "Cập nhật trạng thái sản phẩm thành công!")
     res.redirect("back")
+}
+module.exports.detail = async(req, res) => {
+    const id = req.params.id
+    const product = await Product.findOne({
+        _id: id,
+        deleted: false
+    })
+    res.render(`${systemConfig.prefixAdmin}/pages/product/detail`, {
+        pageTitle: "Tranh chi tiết",
+        product: product
+    })
 }
