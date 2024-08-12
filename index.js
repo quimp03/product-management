@@ -13,10 +13,10 @@ const port = process.env.PORT;
 const routeClient = require('./routers/client/index.route')
 const routerAdmin = require("./routers/admin/index.route")
 database.connect()
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 app.set('view engine', 'pug');
 //set đi thẳng vào folder trong view  
-app.set('views', './views');
+app.set('views', `${__dirname}/views`);
 //set bien locals thông qua middleware
 app.use(prefixAdmin)
 //body-parser
