@@ -175,9 +175,6 @@ module.exports.createPost = async(req, res) => {
         const countProduct = await Product.countDocuments()
         req.body.position = countProduct + 1
     }
-    if(req.file){
-        req.body.thumbnail = `/uploads/${req.file.filename}`
-    }
     const product = new Product(req.body)
     await product.save()
     req.flash('success', "Thêm sản phẩm thành công!")
@@ -200,9 +197,6 @@ module.exports.editPost = async(req, res) => {
     req.body.discountPercentage = parseInt(req.body.discountPercentage)
     req.body.stock = parseInt(req.body.stock)
     req.body.position = parseInt(req.body.position)
-    if(req.file){
-        req.body.thumbnail = `/uploads/${req.file.filename}`
-    }
     await Product.updateOne({
         _id:id,
         deleted: false
