@@ -107,7 +107,6 @@ if(formChangeMulti){
           if(type == "change-position"){
             const position = input.closest("tr").querySelector("input[name='position']").value
             ids.push(`${id}-${position}`)
-            console.log(ids)
           }else{
             ids.push(id)
           }
@@ -207,3 +206,24 @@ if(upload){
   })
 }
 //end upload-image
+//sort-criteria
+const sort = document.querySelector("[sort]")
+if(sort){
+  const url = new URL(window.location.href)
+  const sortSelect = sort.querySelector("[sort-select]")
+  sortSelect.addEventListener("change", () => {
+    const [sortKey, sortValue] = sortSelect.value.split("-")
+    url.searchParams.set("sortKey", sortKey)
+    url.searchParams.set("sortValue", sortValue)
+    window.location.href = url.href
+  })
+  const seletedKey = url.searchParams.get("sortKey")
+  const seletedValue = url.searchParams.get("sortValue")
+  console.log(seletedValue)
+  if(seletedKey && seletedValue){
+    const stringSort = `${seletedKey}-${seletedValue}`
+    const optionSelected = sortSelect.querySelector(`option[value='${stringSort}']`)
+    optionSelected.selected = true
+  }
+}
+// end sort-criteria

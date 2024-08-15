@@ -19,8 +19,19 @@ module.exports.index = async(req, res) => {
     //pagination
     const countRecord = await Product.countDocuments(find)
     const objectPagination = paginationHelper(req, countRecord)
+    // Sort
+    const sort = {};
+    if(req.query.sortKey && req.query.sortValue) {
+        const sortKey = req.query.sortKey;
+        const sortValue = req.query.sortValue;
+        sort[sortKey] = sortValue;
+    } else {
+        sort.position = "desc";
+    }
+    // End Sort
+    
     //dem ban ghi theo dk
-    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip).sort({position: "asc"})
+    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip).sort(sort)
     res.render("admin/pages/product/index.pug", {
         pageTitle: "Danh sách sản phẩm", 
         products: products,
