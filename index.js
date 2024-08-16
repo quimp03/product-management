@@ -7,6 +7,7 @@ const bodyParser = require("body-parser")
 const flash = require("express-flash")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
+const path = require("path")
 dotenv.config()
 const app = express();
 const port = process.env.PORT;
@@ -17,6 +18,8 @@ app.use(express.static(`${__dirname}/public`));
 app.set('view engine', 'pug');
 //set đi thẳng vào folder trong view  
 app.set('views', `${__dirname}/views`);
+/* New Route to the TinyMCE Node module */
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 //set bien locals thông qua middleware
 app.use(prefixAdmin)
 //body-parser

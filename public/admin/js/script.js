@@ -205,7 +205,7 @@ if(upload){
     }
   })
 }
-//end upload-image
+// end upload-image
 //sort-criteria
 const sort = document.querySelector("[sort]")
 if(sort){
@@ -227,3 +227,6 @@ if(sort){
   }
 }
 // end sort-criteria
+
+
+
