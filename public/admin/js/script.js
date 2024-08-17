@@ -227,6 +227,41 @@ if(sort){
   }
 }
 // end sort-criteria
-
+//change-product-category
+const listButonChangeStatusCategory = document.querySelectorAll("[button-change-status-product-category]")
+if(listButonChangeStatusCategory.length > 0){
+  const formChangeStatusCategory = document.querySelector("[form-change-status-product-category]")
+  listButonChangeStatusCategory.forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-id")
+      const status = button.getAttribute("data-status")
+      const dataPath = formChangeStatusCategory.getAttribute("data-path")
+      const action = `${dataPath}/${status}/${id}?_method=PATCH`
+      formChangeStatusCategory.action = action
+      formChangeStatusCategory.submit()
+    })
+  })
+}
+//end change-product-category
+//delete-product-category
+const listButtonDeleteCategory = document.querySelectorAll("[delete-button-product-category]")
+if(listButtonDeleteCategory.length > 0){
+  const formDeleteCategory = document.querySelector("[form-delete-product-category]")
+  listButtonDeleteCategory.forEach(button => {
+    button.addEventListener("click",() => {
+      const id = button.getAttribute("data-id")
+      const dataPath = formDeleteCategory.getAttribute("data-path")
+      const action = `${dataPath}/${id}?_method=DELETE`
+      formDeleteCategory.action = action
+      const isconfirm = confirm("Bạn có chắc muốn xóa không!")
+      if(isconfirm){
+        formDeleteCategory.submit()
+      }else{
+        return
+      }
+    })
+  })
+}
+//end delete-product-category
 
 
