@@ -1,5 +1,6 @@
 const ProductCategory = require("../../model/product-category.model")
 const systemConfig = require("../../config/system");
+const createTreeHelper = require("../../helper/createTree.helper");
 module.exports.index = async (req, res) => {
     const products = await ProductCategory.find({
         deleted: false,
@@ -10,8 +11,13 @@ module.exports.index = async (req, res) => {
     })
 }
 module.exports.create = async(req, res) => {
+    const records = await ProductCategory.find({
+        deleted: false
+    })
+    const newRecords = createTreeHelper(records);
     res.render("admin/pages/productCategory/create.pug", {
-        pageTitle: "Thêm mới danh mục sản phẩm"
+        pageTitle: "Thêm mới danh mục sản phẩm",
+        records: newRecords
     })
 }
 
@@ -36,6 +42,7 @@ module.exports.createPost = async (req, res) => {
     },{
         status: status
     })
+    req.flash("success", "Thay đổi trạng thái danh mục sản phẩm thành công!")
     res.redirect("back")
   }
 module.exports.deleteProductCategory = async(req, res) => {
@@ -45,5 +52,17 @@ module.exports.deleteProductCategory = async(req, res) => {
     }, {
         deleted: true
     })
+    req.flash("success", "Xóa danh mục sản phẩm thành công!")
     res.redirect("back")
+}
+module.exports.eidt = async(req, res) => {
+    const id = req.params.id
+    const product = await ProductCategory.findOne({
+        _id: id,
+        deleted: false
+    })
+    res.render(`admin/pages/productCategory/edit`, {
+        pageTitle: "Trang chỉnh sửa",
+        product: product
+    })
 }

@@ -1,6 +1,8 @@
 extends ../../layouts/default.pug
+include ../../mixins/alert.pug
 
 block main
+  +alert-success()
   h1(class="mb-4") Danh mục sản phẩm
 
   .card.mb-3
@@ -54,7 +56,7 @@ block main
                   ) Dừng hoạt động
               td
                 a(
-                  href="javascipt:;"
+                  href=`/${prefixAdmin}/products-category/edit/${item.id}`
                   class="btn btn-warning mr-1 btn-sm"
                   change-status-prodcut-category
                 ) Sửa

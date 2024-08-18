@@ -263,5 +263,3 @@ if(listButtonDeleteCategory.length > 0){
   })
 }
 //end delete-product-category
-
-
