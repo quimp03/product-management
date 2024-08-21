@@ -137,7 +137,13 @@ if(listButtonDelete.length > 0){
       const dataPath = formDeleteItem.getAttribute("data-path")
       const action = `${dataPath}/${id}?_method=DELETE`
       formDeleteItem.action = action
-      formDeleteItem.submit()
+      const isConfirm = confirm("Bạn có chắc muốn xóa!")
+      if(isConfirm){
+        formDeleteItem.submit()
+      }
+      else{
+        return
+      }
     })
   })
 }

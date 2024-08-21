@@ -2,6 +2,8 @@ const Product = require("../../model/product.model")
 const filterHelper = require("../../helper/filter.helper")
 const paginationHelper = require("../../helper/pagination.helper")
 const systemConfig = require("../../config/system")
+const ProductCategory = require("../../model/product-category.model")
+const createTreeHelper = require("../../helper/createTree.helper")
 module.exports.index = async(req, res) => {
     const find = {
         deleted: false
@@ -172,8 +174,14 @@ module.exports.restoreItemPatch = async (req, res) => {
     }
   };
 module.exports.createItem = async(req, res) => {
+    const find = {
+        deleted: false
+    }
+    const productCategory = await ProductCategory.find(find)
+    const category = createTreeHelper(productCategory)
     res.render("admin/pages/product/create.pug", {
-        pageTitle: "Tạo sản phẩm"
+        pageTitle: "Tạo sản phẩm",
+        category: category
     })
 }
 module.exports.createPost = async(req, res) => {
@@ -197,9 +205,14 @@ module.exports.edit = async(req, res) => {
         _id: id,
         deleted: false
     })
+    const productCategory = await ProductCategory.find({
+        deleted: false
+    })
+    const category = createTreeHelper(productCategory)
     res.render(`${systemConfig.prefixAdmin}/pages/product/edit`, {
         pageTitle: "Trang chỉnh sửa",
-        product: product
+        product: product,
+        category: category
     })
 }
 module.exports.editPost = async(req, res) => {
