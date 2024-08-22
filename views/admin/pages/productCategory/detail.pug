@@ -1,0 +1,18 @@
+extends ../../layouts/default
+block main
+    if(category.title)
+        h1(class="mb-4") #{category.title}
+    if(category.parent_id)
+        div(class="mb-4") Danh mục cha:  #{parentCategory.childCategory}
+    if(category.description)
+        div(class="mb-4") !{category.description}
+    if(category.thumbnail)
+        div(class="mb-4")
+            img(src=category.thumbnail style="width: 100px")
+    if(category.status)
+        div(class="mb-4")
+            | Trạng thái:
+            if(category.status == "active")
+                span(class="badge badge-success ml-1") Hoạt động
+            else
+                span(class="badge badge-success") Dừng hoạt động

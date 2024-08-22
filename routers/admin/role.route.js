@@ -1,0 +1,12 @@
+const express = require("express")
+const route = express()
+const validate = require("../../validates/admin/product.validate")
+const controller = require("../../controllers/admin/role.controller")
+route.get("/", controller.index)
+route.get("/create", controller.create)
+route.post("/create", validate.createPost, controller.creatPost)
+route.get("/edit/:id",controller.edit)
+route.patch("/edit/:id", validate.createPost, controller.editPatch)
+route.delete("/delete/:id", controller.delete)
+route.get("/detail/:id", controller.detail)
+module.exports = route

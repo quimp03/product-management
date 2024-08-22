@@ -66,8 +66,8 @@ block main
                   delete-button-product-category
                   ) Xóa
                 a(
-                  href=`admin/products-category/${item.id}`
-                  class="btn btn-primary mr-1 btn-sm"
+                  href=`/${prefixAdmin}/products-category/detail/${item.id}`
+                  class="btn btn-info mr-1 btn-sm"
                   delete-product-category
                 ) Chi tiết
   +pagination(objectPagination)

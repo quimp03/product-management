@@ -1,0 +1,71 @@
+const systemConfig = require("../../config/system")
+const Role = require("../../model/role.model")
+module.exports.index = async(req, res) => {
+    const roles = await Role.find({
+        deleted: false
+    })
+    res.render(`admin/pages/role/index.pug`, {
+        pageTitle: "Nhóm quyền",
+        records: roles
+    })
+}
+module.exports.create = async(req, res) => {
+    res.render("admin/pages/role/create.pug", {
+        pageTitle :"Tạo nhóm quyền"
+    })
+}
+module.exports.creatPost = async(req, res) => {
+    try {
+        const role = new Role(req.body)
+        await role.save()
+        req.flash("success", "Tạo nhóm quyền thành công!")
+    } catch (error) {
+        console.log(error)
+        req.flash("error", "Tạo nhóm quyền thất bại!")
+    }
+ res.redirect(`/${systemConfig.prefixAdmin}/roles`)
+}
+module.exports.edit = async(req, res) => {
+    const id = req.params.id
+    const role = await Role.findOne({
+        _id: id,
+        deleted: false
+    })
+    res.render(`${systemConfig.prefixAdmin}/pages/role/edit`, {
+        pageTitle: "Chỉnh sửa nhóm quyền",
+        role: role
+    })
+}
+module.exports.editPatch = async(req, res) => {
+    try {   
+        const id = req.params.id
+        const role = await Role.updateOne({
+            _id : id
+        }, req.body)
+        req.flash("success", "Cập nhật nhóm quền thành công!")
+    } catch (error) {
+        console.log(error)
+    }
+    res.redirect(`/${systemConfig.prefixAdmin}/roles`)
+}
+module.exports.delete = async(req, res) => {
+    const id = req.params.id 
+    await Role.updateOne({
+        _id: id
+    }, {
+        deleted: true
+    })
+    req.flash("success", "Xóa nhóm quyền thành công!")
+    res.redirect("back")
+}
+module.exports.detail = async(req, res) => {
+    const id = req.params.id 
+    const role = await  Role.findOne({
+        _id: id,
+        deleted: false
+    })
+    res.render(`${systemConfig.prefixAdmin}/pages/role/detail.pug`, {
+        pageTitle: "Chi tiết nhóm quyền",
+        role: role
+    })
+}

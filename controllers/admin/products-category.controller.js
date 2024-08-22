@@ -15,6 +15,7 @@ module.exports.index = async (req, res) => {
         objectPagination: objectPagination
     })
 }
+// [GET] /admin/product-category
 module.exports.create = async(req, res) => {
     const records = await ProductCategory.find({
         deleted: false
@@ -28,16 +29,22 @@ module.exports.create = async(req, res) => {
 
 // [POST] /admin/products-category/create
 module.exports.createPost = async (req, res) => {
+  try {
     if(req.body.position){
-        req.body.position = parseInt(req.body.position)
-    }else{
-        const countProductCategory = await ProductCategory.countDocuments()
-        req.body.position = countProductCategory + 1
-    }
-    const productCategory = new ProductCategory(req.body)
-    await productCategory.save()
+      req.body.position = parseInt(req.body.position)
+  }else{
+      const countProductCategory = await ProductCategory.countDocuments()
+      req.body.position = countProductCategory + 1
+  }
+  const productCategory = new ProductCategory(req.body)
+  await productCategory.save()
+  } catch (error) {
+    console.log(error)
+    return
+  }
     res.redirect(`/${systemConfig.prefixAdmin}/products-category`)
   };
+  // [PATCH] /admin/product-category/change-status
   module.exports.changeStatus = async(req, res) => {
     const id = req.params.id
     const status = req.params.status
@@ -50,6 +57,7 @@ module.exports.createPost = async (req, res) => {
     req.flash("success", "Thay đổi trạng thái danh mục sản phẩm thành công!")
     res.redirect("back")
   }
+  // [DELETE] /admin/product-category/delete
 module.exports.deleteProductCategory = async(req, res) => {
     const id = req.params.id
     await ProductCategory.updateOne({
@@ -60,6 +68,7 @@ module.exports.deleteProductCategory = async(req, res) => {
     req.flash("success", "Xóa danh mục sản phẩm thành công!")
     res.redirect("back")
 }
+  // [GET] /admin/product-category/edit
 module.exports.edit = async (req, res) => {
     try {
       const find = {
@@ -80,6 +89,7 @@ module.exports.edit = async (req, res) => {
       res.redirect(`/${systemConfig.prefixAdmin}/productCategory`);
     }
   };
+  // [PATCH] /admin/product-category/edit/:id
 module.exports.editPatch = async(req, res) => {
    try {
     const id = req.params.id
@@ -94,4 +104,29 @@ module.exports.editPatch = async(req, res) => {
     req.flash("error", "Cập nhật không thành công!")
    }
    res.redirect("back")
+}
+module.exports.detail = async(req, res) => {
+  const productCategory = await ProductCategory.find({
+    deleted: false
+  })
+  const categoryTree = createTreeHelper(productCategory)
+  const id = req.params.id
+  const category = await ProductCategory.findOne({
+    _id: id,
+    deleted: false
+  })
+  const parentCategory = {
+      childCategory: ""
+  }
+  productCategory.forEach(item => {
+    if(item.id == category.parent_id){
+      parentCategory.childCategory = item.title
+    }
+  })
+  res.render(`${systemConfig.prefixAdmin}/pages/productCategory/detail.pug`, {
+    pageTitle: "Chỉnh sửa danh mục sản phẩm",
+    category: category,
+    categoryTree: categoryTree,
+    parentCategory: parentCategory
+  })
 }

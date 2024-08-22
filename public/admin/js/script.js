@@ -269,3 +269,24 @@ if(listButtonDeleteCategory.length > 0){
   })
 }
 //end delete-product-category
+//delete role
+const listBtnDeleteRole = document.querySelectorAll("[btn-delete-role]")
+if(listBtnDeleteRole.length > 0){
+  const formDeleteRole = document.querySelector("[form-delete-role")
+  listBtnDeleteRole.forEach( button => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-id")
+      const dataPath = formDeleteRole.getAttribute("data-path")
+      const action = `/${dataPath}/${id}?_method=DELETE`
+      formDeleteRole.action = action 
+      const isConfirm = confirm("Bạn có chắc muốn xóa!")
+      if(isConfirm){
+        formDeleteRole.submit()
+      }
+      else{
+        return
+      }
+    })
+  })
+}
+//end delete role

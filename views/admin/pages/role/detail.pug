@@ -1,0 +1,5 @@
+extends ../../layouts/default 
+block main
+    h1(class="mb-4") #{role.title}
+    if(role.description)
+        div(class="mb-4 d-flex") !{ role.description}
