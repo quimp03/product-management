@@ -290,3 +290,101 @@ if(listBtnDeleteRole.length > 0){
   })
 }
 //end delete role
+//table permission
+const buttonSubmitPermission = document.querySelector("[button-submit-permissions]")
+if(buttonSubmitPermission){
+  buttonSubmitPermission.addEventListener("click", () => {
+    const roles = []
+    const tablePermission = document.querySelector("[table-permissions]")
+    const rows = tablePermission.querySelectorAll("tbody tr[data-name]")
+    rows.forEach((row, index) => {
+      const dataName = row.getAttribute("data-name")
+      const inputs = row.querySelectorAll("input")
+      if(dataName == "id"){
+        inputs.forEach(input => {
+          const id = input.value
+          roles.push({
+            id: id,
+            permissions: []
+          })
+        })
+      }else{
+        inputs.forEach((input,index) => {
+          const checkedInput = input.checked
+          if(checkedInput){
+            roles[index].permissions.push(dataName)
+          }
+        })
+      }
+    })
+    if(roles.length > 0){
+      const formChangePermissions = document.querySelector("[form-change-permissions]")
+      const inputRoles = formChangePermissions.querySelector("input[name='roles']")
+      inputRoles.value = JSON.stringify(roles)
+      formChangePermissions.submit()
+    }
+  })
+}
+// Data default Table Permissionss
+const  dataRecords = document.querySelector("[data-records]")
+if(dataRecords){
+  const tablePermissions = document.querySelector("[table-permissions]");
+  console.log(tablePermissions)
+  const records = JSON.parse(dataRecords.getAttribute("data-records"));
+  records.forEach((record,index) => {
+    const permissions = record.permissions
+    permissions.forEach(permission => {
+      const row = tablePermissions.querySelector(`tr[data-name="${permission}"]`)
+      const input = row.querySelectorAll(`input`)[index]
+      input.checked = true
+    })
+  })
+}
+//end Data default Table Permissions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const buttonSubmitPermission = document.querySelector("[button-submit-permissions]")
+// if(buttonSubmitPermission){
+//   buttonSubmitPermission.addEventListener("click", () => {
+//     const roles = []
+//     const tablePermission = document.querySelector("[table-permissions]")
+//     const rows = tablePermission.querySelectorAll("tbody tr[data-name]")
+//     rows.forEach((row, index )=> {
+//      const dataName = row.getAttribute("data-name")
+//      const inputs = row.querySelectorAll("input")
+//      if(dataName == "id"){
+//       inputs.forEach((input,index) => {
+//         console.log(index)
+//         const id = input.value
+//         roles.push({
+//           id : id,
+//           permissions: []
+//       })
+//       })
+//      }else{
+//       inputs.forEach((input, index) => {
+//         console.log(index)
+//         const inputChecked = input.checked;
+//         if(inputChecked) {
+//           roles[index].permissions.push(dataName);
+//         }
+//       })
+//      }
+//     }) 
+
+//   })
+// }
+//end table permission

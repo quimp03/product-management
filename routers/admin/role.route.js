@@ -9,4 +9,6 @@ route.get("/edit/:id",controller.edit)
 route.patch("/edit/:id", validate.createPost, controller.editPatch)
 route.delete("/delete/:id", controller.delete)
 route.get("/detail/:id", controller.detail)
+route.get("/permissions",controller.permisstion)
+route.patch("/permissions", controller.permissionPatch)
 module.exports = route

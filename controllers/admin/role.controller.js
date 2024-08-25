@@ -69,3 +69,31 @@ module.exports.detail = async(req, res) => {
         role: role
     })
 }
+module.exports.permisstion = async(req, res) => {
+    const find = {
+        deleted: false
+    }
+    const roles = await Role.find(find)
+    res.render(`${systemConfig.prefixAdmin}/pages/role/permission.pug`, {
+        pageTitle: "Phân quyền",
+        records: roles
+    })
+}
+module.exports.permissionPatch = async(req, res) => {
+    try {
+        const roles = JSON.parse(req.body.roles)
+        for (const role of roles) {
+            //for of mới dùng đc update
+            await Role.updateOne({
+                _id: role.id
+            }, {
+                permissions: role.permissions
+            })
+        }
+        req.flash("success","Cập nhật thành công!")
+    } catch (error) {
+        console.log(error)
+        req.flash("error","Cập nhật thất bại!")
+    }
+    res.redirect("back")
+}

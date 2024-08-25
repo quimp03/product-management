@@ -23,7 +23,7 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 //set bien locals thông qua middleware
 app.use(prefixAdmin)
 //body-parser
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false })) //chuyễn chuỗi json thành javascript từ form
 //override
 //flash
 app.use(cookieParser('NCTUMPQKMT'));
