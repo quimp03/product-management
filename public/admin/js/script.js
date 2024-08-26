@@ -202,8 +202,6 @@ const upload = document.querySelector("[upload-image]")
 if(upload){
   const uploadImageInput = document.querySelector("[upload-image-input]")
   const uploadImagePreview = document.querySelector("[upload-image-preview]")
-  console.log(uploadImageInput)
-  console.log(uploadImagePreview)
   uploadImageInput.addEventListener("change", () => {
     const file = uploadImageInput.files[0]
     if(file){
@@ -341,50 +339,3 @@ if(dataRecords){
   })
 }
 //end Data default Table Permissions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const buttonSubmitPermission = document.querySelector("[button-submit-permissions]")
-// if(buttonSubmitPermission){
-//   buttonSubmitPermission.addEventListener("click", () => {
-//     const roles = []
-//     const tablePermission = document.querySelector("[table-permissions]")
-//     const rows = tablePermission.querySelectorAll("tbody tr[data-name]")
-//     rows.forEach((row, index )=> {
-//      const dataName = row.getAttribute("data-name")
-//      const inputs = row.querySelectorAll("input")
-//      if(dataName == "id"){
-//       inputs.forEach((input,index) => {
-//         console.log(index)
-//         const id = input.value
-//         roles.push({
-//           id : id,
-//           permissions: []
-//       })
-//       })
-//      }else{
-//       inputs.forEach((input, index) => {
-//         console.log(index)
-//         const inputChecked = input.checked;
-//         if(inputChecked) {
-//           roles[index].permissions.push(dataName);
-//         }
-//       })
-//      }
-//     }) 
-
-//   })
-// }
-//end table permission
