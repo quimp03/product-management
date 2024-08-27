@@ -339,3 +339,35 @@ if(dataRecords){
   })
 }
 //end Data default Table Permissions
+//button change status account
+const listBtnChangeStatusAccount = document.querySelectorAll("[button-change-status-account]")
+if(listBtnChangeStatusAccount.length > 0){
+  const formChangeStatusAccount = document.querySelector("[form-change-status-account]")
+  listBtnChangeStatusAccount.forEach(button => {
+    button.addEventListener("click", () => {
+      const status = button.getAttribute("data-status")
+      const id = button.getAttribute("data-id")
+      const dataPath = formChangeStatusAccount.getAttribute("data-path")
+      const action = `${dataPath}/${id}/${status}?_method=PATCH`
+      formChangeStatusAccount.action = action
+      formChangeStatusAccount.submit()
+    })
+  })
+}
+//end button change status account
+//button delete account
+const listBtnDeleteAccount = document.querySelectorAll("[butonn-delete-account]")
+if(listBtnDeleteAccount.length > 0){
+  listBtnDeleteAccount.forEach(button => {
+    const formDeleteAccount = document.querySelector("[form-delete-account]")
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("data-id")
+      const dataPath = formDeleteAccount.getAttribute("data-path")
+      console.log(dataPath)
+      const action = `${dataPath}/${id}?_method=DELETE`
+      formDeleteAccount.action = action
+      formDeleteAccount.submit()
+    })
+  })
+}
+//end button delete account

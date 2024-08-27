@@ -14,3 +14,70 @@ block main
             href=`/${prefixAdmin}/accounts/create`
             class="btn btn-outline-success"
           ) + Thêm mới
+      table(class="table")
+        thead 
+          tr 
+            th STT
+            th Avatar
+            th Họ tên 
+            th Phân quyền
+            th Email
+            th Trạng thái
+            th Hành động
+        tbody
+          each item, index in accounts 
+            tr 
+              td #{index + 1}
+              td
+                img(
+                  src=item.avatar
+                  alt=item.fullName
+                  width="100px"
+                  height="auto"
+                )
+              td #{item.fullName}
+              td #{item.roleTitle}
+              td #{item.email} 
+              td
+                if(item.status == "active")
+                  a(
+                    href="javascript:;"
+                    class="badge badge-success"
+                    button-change-status-account
+                    data-id=item.id
+                    data-status="inactive"
+                    ) Hoạt động
+                else
+                  a(
+                    href="javascript:;"
+                    class="badge badge-danger"
+                    button-change-status-account
+                    data-id=item.id
+                    data-status="active"
+                    ) Dừng hoạt động
+              td
+                a(
+                  href=`/${prefixAdmin}/accounts/edit/${item.id}`
+                  class="btn btn-warning btn-sm"
+                  ) Sửa
+                button(
+                  butonn-delete-account
+                  data-id=item.id
+                  class="btn btn-danger btn-sm ml-1"
+                ) Xóa
+                a(
+                  href=`/${prefixAdmin}/accounts/detail/${item.id}`
+                  class="btn btn-info btn-sm ml-1"
+                  ) Chi tiết
+  form(
+    form-change-status-account
+    method="POST"
+    action=""
+    data-path=`/${prefixAdmin}/accounts/change-status`
+  )
+  form(
+    form-delete-account
+    method="POST"
+    action=""
+    data-path=`/${prefixAdmin}/accounts/delete`
+    ) 

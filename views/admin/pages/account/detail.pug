@@ -1,0 +1,18 @@
+extends ../../layouts/default
+block main 
+    if(account.fullName)
+        h1 #{account.fullName}
+    if(account.avatar)
+        img(src=account.avatar, alt="" width="100px" heigh=auto class="mb-4")
+    if(account.email)
+        div(class="mb-4") Email:  <b>#{account.email}</b>
+    if(account.phone)
+        div(class="mb-4") Phone:  <b>#{account.phone}</b>
+    if(account.role_id)
+        div(class="mb-4") Quyền:  <b>#{account.roleTitle}</b>
+    if(account.status == "active")
+     div Trạng thái: 
+        div(class="badge badge-success ml-1") Hoạt động
+    else
+      div Trạng thái: 
+        div(class="badge badge-danger ml-1") Dừng hoạt động
