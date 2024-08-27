@@ -363,10 +363,14 @@ if(listBtnDeleteAccount.length > 0){
     button.addEventListener("click", () => {
       const id = button.getAttribute("data-id")
       const dataPath = formDeleteAccount.getAttribute("data-path")
-      console.log(dataPath)
       const action = `${dataPath}/${id}?_method=DELETE`
       formDeleteAccount.action = action
-      formDeleteAccount.submit()
+      const isConfirm = confirm("Bạn có chắc muốn xóa không!")
+      if(isConfirm){
+        formDeleteAccount.submit()
+      }else{
+        return
+      }
     })
   })
 }
