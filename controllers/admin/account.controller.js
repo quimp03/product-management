@@ -1,6 +1,8 @@
 const systemConfig = require("../../config/system")
+const md5 = require("md5")
 const Role = require("../../model/role.model")
 const Account = require("../../model/account.model")
+const generateHelper = require("../../helper/generate.helper")
 module.exports.index = async(req, res) => {
     const roles = await Role.find({
         deleted: false
@@ -30,6 +32,19 @@ module.exports.create = async(req, res) => {
     })
 }
 module.exports.createPost = async(req, res) => {
+    req.body.password = md5(req.body.password)
+    req.body.token = generateHelper.generateRandomString(30)
+    const email = req.body.email
+    const accounts = await Account.find({
+        deleted: false
+    })
+    for (const account of accounts) {
+        if(account.email == email){
+            req.flash("error", "Email đã tồn tại")
+            res.redirect("back")
+            return
+        }
+    }
     const account = new Account(req.body)
     await account.save()
     req.flash("success", "Thêm tài khoản thành công!")
