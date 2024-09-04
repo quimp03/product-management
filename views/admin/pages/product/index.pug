@@ -83,6 +83,7 @@ block main
               th Giá
               th Vị trí
               th Trạng thái
+              th Tạo bởi
               th Hành động
               th
                 .trash
@@ -127,6 +128,9 @@ block main
                                 data-status="active"
                                 class="badge badge-danger out-line-none"
                               ) Dừng hoạt động
+                      td
+                        div #{item.createdByFullName}
+                        div #{moment(item.createdAt).format("DD-MM-YYYY HH:mm")}
                       td
                           if(role.permissions.includes("products_edit"))
                             a(

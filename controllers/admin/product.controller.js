@@ -4,6 +4,8 @@ const paginationHelper = require("../../helper/pagination.helper")
 const systemConfig = require("../../config/system")
 const ProductCategory = require("../../model/product-category.model")
 const createTreeHelper = require("../../helper/createTree.helper")
+const Account = require("../../model/account.model")
+const { now } = require("mongoose")
 module.exports.index = async(req, res) => {
     const find = {
         deleted: false
@@ -34,6 +36,14 @@ module.exports.index = async(req, res) => {
     
     //dem ban ghi theo dk
     const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip).sort(sort)
+    for (const product of products ) {
+        const createdBy = await Account.findOne({
+            _id: product.createdBy, 
+        })
+        if(createdBy){
+            product.createdByFullName = createdBy.fullName
+        }
+    }
     res.render("admin/pages/product/index.pug", {
         pageTitle: "Danh sách sản phẩm", 
         products: products,
@@ -65,7 +75,9 @@ module.exports.changeMultiPatch = async(req, res) => {
             await Product.updateMany({
             _id: {$in: ids}
             }, {
-                status: type
+                status: type,
+                updatedAt: new Date(),
+                deletedBy: res.locals.user.id
             })
             req.flash("success", "Cập nhật trạng thái thành công!")
             break
@@ -93,13 +105,13 @@ module.exports.changeMultiPatch = async(req, res) => {
             //     });
             //   }
               break;
-        case "deleteAll":
+        case "delete-all":
             await Product.updateMany({
                 _id: {$in: ids}
             }, {
                 deleted: true
             })
-            res.flash("success", "Xóa các sản phẩm thành công!")
+            req.flash("success", "Xóa các sản phẩm thành công!")
             break
         case "restore":
             await Product.updateMany({
@@ -107,13 +119,13 @@ module.exports.changeMultiPatch = async(req, res) => {
             }, {
                 deleted: false
             })
-            res.flash("success", "Khôi phục các sản phẩm thành công!")
+            req.flash("success", "Khôi phục các sản phẩm thành công!")
             break
         case "deletevv":
             await Product.deleteMany({
                 _id: {$in: ids}
             })
-            res.flash("success", "Sản phẩm ")
+            req.flash("success", "Sản phẩm ")
             break
         default: 
             break
@@ -125,7 +137,9 @@ module.exports.deleteItem = async(req, res) =>{
     await Product.updateOne({
         _id: id
     }, {
-        deleted: true
+        deleted: true,
+        updatedAt: new Date(),
+        deletedBy: res.locals.user.id
     })
     res.redirect("back")
 }
@@ -194,6 +208,7 @@ module.exports.createPost = async(req, res) => {
         const countProduct = await Product.countDocuments()
         req.body.position = countProduct + 1
     }
+    req.body.createdBy = res.locals.user.id
     const product = new Product(req.body)
     await product.save()
     req.flash('success', "Thêm sản phẩm thành công!")

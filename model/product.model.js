@@ -15,7 +15,14 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false 
     },
+    deletedAt: Date,
+    deletedBy: String,
+    createdBy: String,
+    updatedBy: String,
     slug: { type: String, slug: "title" }
-})
+    },{
+        timestamps: true
+    }
+)
 const Product = mongoose.model("Product", productSchema,"products")
 module.exports = Product
