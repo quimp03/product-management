@@ -19,7 +19,11 @@ const productSchema = new mongoose.Schema({
     deletedBy: String,
     createdBy: String,
     updatedBy: String,
-    slug: { type: String, slug: "title" }
+    slug: { type: String, slug: "title" },
+    featured:{
+        type: String,
+        default: "0"
+    }
     },{
         timestamps: true
     }
