@@ -5,7 +5,7 @@ module.exports.index = async(req, res) => {
         deleted: false,
         status: "active",
         featured: "1"
-    })
+    }).limit(6).select("-decription")
     //Sản phẩm mới nhất
     const productsNew = await Product.find({
         deleted: false,
