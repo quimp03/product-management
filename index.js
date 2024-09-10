@@ -27,6 +27,8 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 app.use(prefixAdmin)
 //set moment locals
 app.use(systemConfig.moment)
+//set locals currency
+app.use(systemConfig.currency)
 //body-parser
 app.use(bodyParser.urlencoded({ extended: false })) //chuyễn chuỗi json thành javascript từ form
 //override

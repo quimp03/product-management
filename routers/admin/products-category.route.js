@@ -7,10 +7,10 @@ const upload = multer();
 const controller = require("../../controllers/admin/products-category.controller")
 router.get("/", controller.index)
 router.get("/create", controller.create)
-router.post("/create", upload.single('thumbnail'), uploadCloud.uploadSingle, validate.createPost, controller.createPost)
+router.post("/create", upload.single('thumbnail'), uploadCloud.uploadSingle, controller.createPost)
 router.patch("/change-status/:status/:id", controller.changeStatus)
 router.delete("/delete/:id", controller.deleteProductCategory)
 router.get("/edit/:id", controller.edit)
-router.patch("/edit/:id",upload.single('thumbnail'), uploadCloud.uploadSingle, validate.createPost, controller.editPatch)
+router.patch("/edit/:id",upload.single('thumbnail'), uploadCloud.uploadSingle, controller.editPatch)
 router.get("/detail/:id",controller.detail)
 module.exports = router
