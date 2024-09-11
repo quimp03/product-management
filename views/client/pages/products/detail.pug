@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 
 block main
   .product-detail
-    .container.my-5
+    .container.my-5.text-center
       .row
         .col-6
           .inner-thumb
@@ -26,20 +26,21 @@ block main
 
           if (product.stock)
             div(class="inner-stock") Còn lại <span>#{product.stock}</span> sản phẩm
-
+          hr
           form(
             action=`/cart/add/${product.id}`
             method="POST"
           )
-            input(
-              class="form-control mb-2"
-              type="number"
-              name="quantity"
-              value="1"
-              min="1"
-              max=product.stock
-            )
+            div(class="d-flex justify-content-center")
+              input(
+                class="form-control mb-2 w-50"
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                max=product.stock
+              )
             button(
               type="submit"
-              class="btn btn-success btn-block"
+              class="btn add-product w-50"
             ) Thêm vào giỏ hàng

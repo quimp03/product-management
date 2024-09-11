@@ -1,8 +1,8 @@
 /* Header */
 .header {
   border-bottom: 1px solid #ddd;
-  padding: 20px 0;
-  background-color: black
+  padding: 20px 0px;
+  background-color: black;
 }
 
 .header .inner-logo img {
@@ -214,4 +214,59 @@
 .product-detail .inner-desc img {
   max-width: 100%;
 }
+.add-product{
+  background-color: black;
+  color: white
+}
+.add-product:hover{
+  background-color: white;
+  border: 1px solid black;
+  transition: background-color 0.5s ease;
+}
 /* End product-detail */
+/* search header */
+.box-search {
+  position: relative;
+  width: 84px;
+  margin-left: 10px;
+}
+.search-header span{
+  color: white;
+  text-decoration: underline white;
+}
+.search-header i{
+  margin: 6px 0 0 2px;
+  font-size: 17px;
+  color: white;
+}
+.search-header:hover{
+  cursor: pointer;
+}
+.underline-search{
+  position: absolute;
+  border-bottom: 1px solid white;
+  width: 0%;
+  left: 0%;
+  transition: 0.3s;
+}
+.search-header:hover ~ .underline-search{
+  width: 100%;
+}
+.submit-button-header{
+  border: none;
+  outline: none;
+  height: 30px;
+  background-color: white;
+}
+.input-find{
+  border-radius: 0;
+  border: 0;
+  height: 30px;
+}
+.input-find:focus {
+  box-shadow: none;
+}
+.hide{
+  visibility: hidden;
+}
+/* end search header */
