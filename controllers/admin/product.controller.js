@@ -5,7 +5,6 @@ const systemConfig = require("../../config/system")
 const ProductCategory = require("../../model/product-category.model")
 const createTreeHelper = require("../../helper/createTree.helper")
 const Account = require("../../model/account.model")
-const { now } = require("mongoose")
 module.exports.index = async(req, res) => {
     const find = {
         deleted: false
