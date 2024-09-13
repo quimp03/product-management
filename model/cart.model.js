@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const cardSchema = new mongoose.Schema({
+const cartSchema = new mongoose.Schema({
     // user_id: String,
     products: [
         {
@@ -11,5 +11,5 @@ const cardSchema = new mongoose.Schema({
         timestamps: true,
     }
 )
-const Card = mongoose.model("Card", Card, "cards")
-module.exports = Card
+const Cart = mongoose.model("Cart", cartSchema, "carts")
+module.exports = Cart

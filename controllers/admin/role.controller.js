@@ -82,6 +82,7 @@ module.exports.permisstion = async(req, res) => {
 module.exports.permissionPatch = async(req, res) => {
     try {
         const roles = JSON.parse(req.body.roles)
+        console.log(roles)
         for (const role of roles) {
             //for of mới dùng đc update
             await Role.updateOne({
