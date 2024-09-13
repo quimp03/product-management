@@ -266,7 +266,6 @@
 }
 .input-find:focus {
   box-shadow: none;
-  background-color: white;
 }
 .hide{
   visibility: hidden;

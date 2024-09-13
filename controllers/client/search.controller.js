@@ -7,6 +7,9 @@ module.exports.index = async(req, res) => {
         deleted: false,
         status: "active",
     })
+    for (const item of products) {
+        item.priceNew = (item.price * (100 - item.discountPercentage)/100).toFixed(0);
+      }
     res.render("client/pages/search/index.pug", {
         pageTitle: "Kết quả",
         products: products,

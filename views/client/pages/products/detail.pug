@@ -1,5 +1,4 @@
 extends ../../layouts/default.pug
-
 block main
   .product-detail
     .container.my-5.text-center
@@ -44,3 +43,8 @@ block main
               type="submit"
               class="btn add-product w-50"
             ) Thêm vào giỏ hàng
+    .container.my-5
+      .row
+        .col-12
+          h1(class="text-center") MÔ TẢ SẢN PHẨM
+          .inner-desc !{product.description}
