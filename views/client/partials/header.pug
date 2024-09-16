@@ -5,7 +5,7 @@ header.header
       .col-3
         .inner-logo
           a(href="/")
-            img(src="/client/images/logo.svg", alt="Logo")
+            img(src="", alt="Logo")
       .col-3
         .inner-menu
           ul
@@ -32,9 +32,17 @@ header.header
                   type="submit"
                   class="position-absolute submit-button-header search-button-toggle hide"
                 ) <i class="fa-solid fa-magnifying-glass"></i>
-      .col-2
+      .col-1
         div(class="box-search")
           div(class="d-flex search-header")
             span Tìm kiếm
             <i class="fa-solid fa-magnifying-glass"></i>
           span(class="underline-search")
+      .cart-box
+        div(class="loginCart")
+          a(href="/login") 
+            <i class="fa fa-user" aria-hidden="true"></i>
+          a(href="/cart" class="cart-header")
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            |(#{miniCart.products.length})
+          
