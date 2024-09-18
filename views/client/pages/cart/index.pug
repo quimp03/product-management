@@ -1,0 +1,64 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert-success()
+  +alert-error()
+
+  .container.my-3
+    .row.head-pay
+      .col-12
+        h1(class="text-left") GIỎ HÀNG
+    if(cartDetail.products.length > 0)
+      .row
+        .col-12
+          table(class="table table-hover")
+            thead(class="thead border-bottom-2")
+              tr
+                th(colspan="2" class="text-center-detail") Chi tiết sản phẩm
+                th Giá
+                th Số lượng
+                th Tổng tiền
+            tbody
+              each item in cartDetail.products
+                tr
+                  td
+                    div(class="")
+                      img(
+                        src=item.infoProduct.thumbnail
+                        alt=item.infoProduct.title
+                        width="125px"
+                      )
+                  td
+                    a(href=`/products/detail/${item.infoProduct.slug}` class="title-pay") #{item.infoProduct.title}
+                    a(
+                      href=`/cart/delete/${item.product_id}`
+                      class="d-block position-r"
+                    ) Xóa
+                  td #{item.infoProduct.priceNew}$
+                  td
+                    button(class="sysbol-quantity" sysbol-minus) -
+                    input(
+                      class="sysbol-quantity-input"
+                      type="text"
+                      name="quantity"
+                      value=item.quantity
+                      min="1"
+                      max=item.infoProduct.stock
+                      item-id=item.product_id
+                      input-update-product-cart
+                    )
+                    button(class="sysbol-quantity" sysbol-plus) +
+                  td #{currency(item.infoProduct.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+          hr
+
+          h3(class="text-right") Tổng đơn hàng: #{currency(cartDetail.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+
+          div(class="text-right mt-3")
+            a(href="/checkout" class="btn add-product w-10") THANH TOÁN
+    else 
+      div Giỏ hàng trống
+      div(class="d-flex")
+       p Tiếp tục mua hàng 
+       a(href="/products" class="ml-1")  tại đây   

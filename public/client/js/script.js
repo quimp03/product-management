@@ -27,3 +27,22 @@ if(showAlert){
   }
 }
 //end show-alert
+//update quantity
+const inputUpdateQuantity =document.querySelector("[input-update-product-cart]")
+if(inputUpdateQuantity){
+  const sysbolPlus = document.querySelector("[sysbol-plus]")
+  console.log(sysbolPlus)
+  const sysbolMinus = document.querySelector("[sysbol-minus]")
+  let currentQuantity = parseInt(inputUpdateQuantity.getAttribute("value"))
+  sysbolMinus.addEventListener("click", () => {
+    if(currentQuantity > 1){
+      currentQuantity -= 1
+      inputUpdateQuantity.value = currentQuantity
+    }
+  })
+  sysbolPlus.addEventListener("click", () => {
+    currentQuantity += 1
+    inputUpdateQuantity.value = currentQuantity
+  })
+}
+//end update quantity

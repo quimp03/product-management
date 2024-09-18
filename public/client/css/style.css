@@ -167,6 +167,9 @@
 
 
 /* product-detail */
+.product-detail{
+  margin-top: 80px;
+}
 .product-detail .inner-thumb img {
   width: 100%;
   height: auto;
@@ -287,6 +290,14 @@
   margin: 50px 0px 10px 0px;
   font-weight: bold;
 }
+.text-center-detail{
+  text-align: center;
+}
+.text-left{
+  font-size: 20px;
+  margin: 50px 0px 10px 0px;
+  font-weight: bold;
+}
 /* end text center body */
 
  /* alert */
@@ -324,3 +335,29 @@
   margin-left: 10px;
 }
 /* end login cart */
+
+/* pay */
+.head-pay{
+  margin-top: 80px;
+}
+/* end pay */
+/* title pay */
+.title-pay{
+  color: black;
+  left: 0px;
+  font-size: 20px;
+}
+/* end title pay */
+/* sysbol quantity */
+.sysbol-quantity{
+  width: 30px;
+  border: 1px solid gray;
+  background-color: white;
+}
+.sysbol-quantity-input{
+  width: 40px;
+  border: 1px solid gray;
+  align-items: center;
+  text-align: center;
+}
+/* end sysbol quantity */
