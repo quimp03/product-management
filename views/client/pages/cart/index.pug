@@ -13,7 +13,7 @@ block main
     if(cartDetail.products.length > 0)
       .row
         .col-12
-          table(class="table table-hover")
+          table(class="table table-hover" table-cart)
             thead(class="thead border-bottom-2")
               tr
                 th(colspan="2" class="text-center-detail") Chi tiết sản phẩm
@@ -36,12 +36,11 @@ block main
                       href=`/cart/delete/${item.product_id}`
                       class="d-block position-r"
                     ) Xóa
-                  td #{item.infoProduct.priceNew}$
+                  td #{currency(item.infoProduct.priceNew, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
                   td
-                    button(class="sysbol-quantity" sysbol-minus) -
                     input(
                       class="sysbol-quantity-input"
-                      type="text"
+                      type="number"
                       name="quantity"
                       value=item.quantity
                       min="1"
@@ -49,16 +48,29 @@ block main
                       item-id=item.product_id
                       input-update-product-cart
                     )
-                    button(class="sysbol-quantity" sysbol-plus) +
                   td #{currency(item.infoProduct.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
           hr
-
           h3(class="text-right") Tổng đơn hàng: #{currency(cartDetail.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
 
           div(class="text-right mt-3")
+            button(
+              button-update-quantity
+              class="btn add-product w-10 mr-1"
+             ) CẬP NHẬT
             a(href="/checkout" class="btn add-product w-10") THANH TOÁN
     else 
       div Giỏ hàng trống
       div(class="d-flex")
        p Tiếp tục mua hàng 
        a(href="/products" class="ml-1")  tại đây   
+    //- form(
+    //-   form-update-cart
+    //-   data-path="/cart/update/"
+    //-   action=""
+    //-   method="POST"
+    //-   )
+    //-   input(
+    //-     type="text"
+    //-     name="ids"
+    //-     value=""
+    //-     )

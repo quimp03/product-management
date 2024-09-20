@@ -27,22 +27,16 @@ if(showAlert){
   }
 }
 //end show-alert
-//update quantity
-const inputUpdateQuantity =document.querySelector("[input-update-product-cart]")
-if(inputUpdateQuantity){
-  const sysbolPlus = document.querySelector("[sysbol-plus]")
-  console.log(sysbolPlus)
-  const sysbolMinus = document.querySelector("[sysbol-minus]")
-  let currentQuantity = parseInt(inputUpdateQuantity.getAttribute("value"))
-  sysbolMinus.addEventListener("click", () => {
-    if(currentQuantity > 1){
-      currentQuantity -= 1
-      inputUpdateQuantity.value = currentQuantity
-    }
-  })
-  sysbolPlus.addEventListener("click", () => {
-    currentQuantity += 1
-    inputUpdateQuantity.value = currentQuantity
+// update Cart
+const tableCart = document.querySelector("[table-cart]")
+if(tableCart){
+  const listButtonQuantity =  tableCart.querySelectorAll("input[name='quantity']")
+  listButtonQuantity.forEach(input => {
+    input.addEventListener("change", () => {
+      const quantity = input.value 
+      const productId = input.getAttribute("item-id")
+      window.location.href = `/cart/update/${productId}/${quantity}`
+    })
   })
 }
-//end update quantity
+// end update cart

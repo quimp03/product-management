@@ -67,6 +67,7 @@ module.exports.changeStatus = async(req,res) => {
 module.exports.changeMultiPatch = async(req, res) => {
     const type = req.body.type
     let ids = req.body.ids
+    console.log(ids)
     ids = ids.split(", ")
     switch(type){
         case "active":

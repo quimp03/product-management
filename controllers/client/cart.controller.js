@@ -73,3 +73,17 @@ module.exports.deleteProduct = async(req, res) => {
     req.flash("success", "Xóa sản phẩm khỏi giỏ hàng thành công!")
     res.redirect("back")
 }
+module.exports.updateQuantityProdcut = async(req, res) => {
+    const productId = req.params.productId
+    const quantity = req.params.quantity
+    console.log(quantity)
+    const cartId = req.cookies.cartId
+    await Cart.updateOne({
+        _id: cartId,
+        "products.product_id" : productId
+    },{
+        $set: {"products.$.quantity" : quantity}
+    })
+    req.flash("success", "Cập nhật số lượng sản phẩm giỏ hàng thành công!")
+    res.redirect("back")
+}

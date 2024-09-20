@@ -105,8 +105,10 @@ if(formChangeMulti){
         listCheckedMulti.forEach(input => {
           const id = input.getAttribute("value")
           if(type == "change-position"){
+            //nếu case là change-position thì cần có thêm vị trí muốn change
             const position = input.closest("tr").querySelector("input[name='position']").value
             ids.push(`${id}-${position}`)
+            console.log(ids)
           }else{
             ids.push(id)
           }
