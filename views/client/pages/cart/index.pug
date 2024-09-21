@@ -53,24 +53,9 @@ block main
           h3(class="text-right") Tổng đơn hàng: #{currency(cartDetail.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
 
           div(class="text-right mt-3")
-            button(
-              button-update-quantity
-              class="btn add-product w-10 mr-1"
-             ) CẬP NHẬT
             a(href="/checkout" class="btn add-product w-10") THANH TOÁN
     else 
       div Giỏ hàng trống
       div(class="d-flex")
        p Tiếp tục mua hàng 
        a(href="/products" class="ml-1")  tại đây   
-    //- form(
-    //-   form-update-cart
-    //-   data-path="/cart/update/"
-    //-   action=""
-    //-   method="POST"
-    //-   )
-    //-   input(
-    //-     type="text"
-    //-     name="ids"
-    //-     value=""
-    //-     )
