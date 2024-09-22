@@ -285,9 +285,9 @@
 }
 /* end search header */
 /* text center body*/
-.text-center{
+.text-center-noneBoot{
   font-size: 20px;
-  margin: 50px 0px 10px 0px;
+  margin: 70px 0px 10px 0px;
   font-weight: bold;
 }
 .text-center-detail{

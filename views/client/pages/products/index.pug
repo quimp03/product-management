@@ -1,10 +1,13 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
 block main 
+  +success-alert(5000)
+  +alert-error(5000)
   .container.my-3
     .row
       .col-12.text-center
-        h1(class="text-center") TẤT CẢ SẢN PHẨM
+        h1(class="text-center-noneBoot") TẤT CẢ SẢN PHẨM
     .row
       each item in products
         .col-3.mb-3
