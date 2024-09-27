@@ -6,7 +6,7 @@
 }
 .header {
   border-bottom: 1px solid #ddd; 
-  padding: 0 7px 0 7px;
+  padding: 0 10px 0 7px;
   background-color: black;
   top: 0px;
   width: 100vw;
@@ -331,8 +331,9 @@
 /* end alert */
 /* login cart */
 .loginCart a{
-  margin-left: 15px;
+  margin-left: 13px;
   color: white;
+  font-size: 14px;
 }
 .loginCart.cart-header:hover{
   text-decoration: red;
@@ -375,4 +376,7 @@
 
 .product-detail{
   margin-top: 110px;
+}
+.items-right-align{
+  margin-left: 0px;
 }

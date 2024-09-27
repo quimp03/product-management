@@ -1,5 +1,6 @@
 const User = require('../../model/user.model')
 const ForgotPassword = require("../../model/forgot-password.model")
+const sendEmailHelper = require("../../helper/sendEmail.helper")
 const md5 = require("md5")
 const generate = require("../../helper/generate.helper")
 module.exports.login = async(req, res) => {
@@ -78,13 +79,18 @@ module.exports.forgotPasswordPost = async(req, res) => {
         res.redirect("back")
         return
     }
+    const otp = generate.generateRandomNumber(6)
+    //Lưu otp vào database
     const objectForgotPassword  = {
         email: email,
-        otp: generate.generateRandomNumber(6),
-        expireAt: Date.now() + 4*60*1000,
+        otp: otp,
+        expireAt: Date.now() + 3*60*1000,
     }
     const forgotPassword = new ForgotPassword(objectForgotPassword)
     await forgotPassword.save()
+    const subject = "Lấy lại mật khẩu."
+    const text = `Mã xác thực OTP: ${otp}. Vui lòng không cung cấp mã OTP này với bất kỳ ai!`
+    sendEmailHelper.sendEmail(email,subject,text)
     res.redirect(`/user/password/otp?email=${email}`)
 }
 module.exports.otp = async(req, res) => {
