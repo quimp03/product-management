@@ -1,7 +1,15 @@
 const express = require("express")
 const router = express()
+
 const controller = require("../../controllers/client/user.controller")
-router.get("/login", controller.index)
+router.get("/login", controller.login)
 router.get("/register", controller.register)
 router.post("/register", controller.registerPost)
+router.post("/login", controller.loginPost)
+router.get("/logout", controller.logout)
+router.get("/password/forgot", controller.forgotPassword)
+router.post("/password/forgot", controller.forgotPasswordPost)
+router.get("/password/otp", controller.otp)
+router.post("/password/otp", controller.optPost)
+router.post("/password/reset", controller.resetPassword)
 module.exports = router

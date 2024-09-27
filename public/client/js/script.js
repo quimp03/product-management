@@ -40,3 +40,21 @@ if(tableCart){
   })
 }
 // end update cart
+const currentValue = document.querySelector("[currentValuePassword]");
+const newValue = document.querySelector("[newValuePassword]");
+const confirmPassword = document.querySelector("[confirmPassword]");
+const formConfirmPassword = document.querySelector("[formConfirmPassword]");
+
+if (formConfirmPassword) {
+  formConfirmPassword.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (currentValue.value !== newValue.value) {
+      alert("Mật khẩu không khớp!");
+      currentValue.value = '';
+      newValue.value = '';
+      return
+    } else {
+      formConfirmPassword.submit();
+    }
+  });
+}

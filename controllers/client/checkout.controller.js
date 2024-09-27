@@ -13,7 +13,7 @@ module.exports.index = async(req, res) => {
         }).select("thumbnail title price discountPercentage stock slug");
         inforProduct.newPrice = (inforProduct.price * (100 - inforProduct.discountPercentage)/100).toFixed(0)
         inforProduct.totalPrice = inforProduct.newPrice * product.quantity
-        cart.totalPrice = inforProduct.totalPrice
+        cart.totalPrice += inforProduct.totalPrice
         product.inforProduct = inforProduct
     }
     res.render("client/pages/checkout/checkout.pug", {

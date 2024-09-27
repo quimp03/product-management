@@ -6,11 +6,12 @@ block main
   +alert-error()
   .container.my-3
     .row
-      .col-12
+      .col-12.text-center
+        div(class="text-center-noneBoot") MPQ SHOP
     if(cartDetail.products.length > 0)
       .row
         .col-12
-          table(class="table table-bordered mt-5" table-cart)
+          table(class="table table-bordered mt-3" table-cart)
             thead
               tr
                 th STT
@@ -34,7 +35,7 @@ block main
                   td #{item.quantity}
                   td #{currency(item.inforProduct.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
           
-          h3(class="text-right") Tổng đơn hàng: #{cartDetail.totalPrice}$
+          h3(class="text-right") Tổng đơn hàng: #{currency(cartDetail.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
     if(cartDetail.products.length > 0)
       .row
         .col-12

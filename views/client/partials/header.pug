@@ -2,36 +2,56 @@ include ../mixins/sub-menu.pug
 header.header
   .container
     .row.align-items-center
-      .col-3
+      .col-2.p-0
         .inner-logo
           a(href="/")
-            img(src="", alt="Logo")
-      .col-3
+            img(src="/client/images/logo.png", alt="Logo")
+      .col-3.p-0
         .inner-menu
-          ul
+          ul.d-flex
             li
               a(href="/") Trang chủ
             li(class="sub-menu")
               a(href="/products") Sản phẩm
               +sub-menu(layoutProductCategory)
-      .col-4
-          form(
-            action="/search"
-            method="GET"
-          ) 
-            div(class="position-relative form-group d-flex mb-0")
-              input(
-                type="text"
-                placeholder="Bạn đang tìm sản phẩm nào?"
-                class="form-control input-find search-input-toggle hide"
-                name="keyword"
-                value=keyword
-              )
-              div(class="right-0")
-                button(
-                  type="submit"
-                  class="position-absolute submit-button-header search-button-toggle hide"
-                ) <i class="fa-solid fa-magnifying-glass"></i>
+      if(user)
+          .col-3.p-0
+            form(
+              action="/search"
+              method="GET"
+            ) 
+              div(class="position-relative form-group d-flex mb-0 mr-2")
+                input(
+                  type="text"
+                  placeholder="Bạn đang tìm sản phẩm nào?"
+                  class="form-control input-find search-input-toggle hide"
+                  name="keyword"
+                  value=keyword
+                )
+                div(class="right-0")
+                  button(
+                    type="submit"
+                    class="position-absolute submit-button-header search-button-toggle hide"
+                  ) <i class="fa-solid fa-magnifying-glass"></i>
+      else
+        .col-5.p-0
+            form(
+              action="/search"
+              method="GET"
+            ) 
+              div(class="position-relative form-group d-flex mb-0 mr-2")
+                input(
+                  type="text"
+                  placeholder="Bạn đang tìm sản phẩm nào?"
+                  class="form-control input-find search-input-toggle hide"
+                  name="keyword"
+                  value=keyword
+                )
+                div(class="right-0")
+                  button(
+                    type="submit"
+                    class="position-absolute submit-button-header search-button-toggle hide"
+                  ) <i class="fa-solid fa-magnifying-glass"></i>
       .col-1
         div(class="box-search")
           div(class="d-flex search-header")
@@ -40,9 +60,18 @@ header.header
           span(class="underline-search")
       .cart-box
         div(class="loginCart")
-          a(href="/user/login") 
-            <i class="fa fa-user" aria-hidden="true"></i>
+          if(user)
+            a(href="/user/profile") 
+              <i class="fa fa-user" aria-hidden="true"></i>
+              |#{user.fullName}
+          else 
+            a(href="/user/login")
+              <i class="fa fa-user" aria-hidden="true"></i>
           a(href="/cart" class="cart-header")
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             |(#{miniCart.products.length})
+          if(user)
+            a(href="/user/logout")
+              <i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất
+
           
