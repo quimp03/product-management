@@ -6,6 +6,9 @@ module.exports.index = async(req, res) => {
         status: "active",
         featured: "1"
     }).limit(6).select("-decription")
+    for (const product of productsFeatured) {
+        product.newPrice = (product.price * (100 - product.discountPercentage)/100).toFixed(0)
+    }
     //Sản phẩm mới nhất
     const productsNew = await Product.find({
         deleted: false,

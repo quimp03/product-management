@@ -3,6 +3,7 @@ const ForgotPassword = require("../../model/forgot-password.model")
 const sendEmailHelper = require("../../helper/sendEmail.helper")
 const md5 = require("md5")
 const generate = require("../../helper/generate.helper")
+const Cart = require('../../model/cart.model')
 module.exports.login = async(req, res) => {
     res.render("client/pages/user/login.pug", {
         pageTitle: "Đăng nhập tài khoản"
@@ -57,6 +58,11 @@ module.exports.loginPost = async(req, res) => {
         res.redirect("back")
         return
     }
+    await Cart.updateOne({
+        _id: req.cookies.cartId
+    }, {
+        user_id: user.id
+    })
     res.cookie("tokenUser", user.tokenUser)
     req.flash("success", "Đăng nhập thành công!")
     res.redirect("/")
@@ -127,4 +133,15 @@ module.exports.resetPassword = async(req, res) => {
     })
     req.flash("success", "Cập nhật mật khẩu thành công!")
     res.redirect("/")
+}
+module.exports.profileUser =async(req, res ) => {
+    const inforUser = await User.findOne({
+        tokenUser: req.cookies.tokenUser,
+        deleted: false,
+        status: "active"
+    })
+    res.render("client/pages/user/profile.pug", {
+        pageTitle: "Tài khoản",
+        inforUser: inforUser
+    })
 }

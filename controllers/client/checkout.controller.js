@@ -35,7 +35,7 @@ module.exports.orderPost = async(req, res) => {
             product_id: product.id,
             price: product.price,
             discountPercentage: product.discountPercentage,
-            quantity: item.quantity
+            quantity: item.quantity,
         }
         products.push(infoProduct)
     }
@@ -43,7 +43,8 @@ module.exports.orderPost = async(req, res) => {
     const dataOrder = {
         cart_id: cartId,
         userInfo: userInfo,
-        products: products
+        products: products,
+        user_id: cart.user_id
     }
     const order = new Order(dataOrder)
     await order.save()
@@ -65,7 +66,6 @@ module.exports.success = async(req, res) => {
         const product = await Product.findOne({
             _id: item.product_id
         })
-        console.log(product)
         item.newPrice = (item.price * (100 - item.discountPercentage)/100).toFixed(0)
         item.totalPrice = item.newPrice * item.quantity
         item.title = product.title

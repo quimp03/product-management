@@ -6,8 +6,8 @@ block main
   +alert-error(5000)
   .container.my-3
     .row
-      .col-12
-        +box-head("Sản phẩm nổi bật")
+      .col-12.text-center
+        h1(class="text-center-noneBoot") SẢN PHẨM NỔI BẬT
 
     .row
       each item in productsFeatured
@@ -19,12 +19,13 @@ block main
             .inner-content
               h3.inner-title
                 a(href=`/products/detail/${item.slug}`) #{item.title}
-              .inner-price-new #{item.priceNew}$
-              .inner-price-old #{item.price}$
+              .inner-price-new #{currency(item.newPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+              .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
               .inner-discount -#{item.discountPercentage}%
     .row
-      .col-12
-        +box-head("Sản phẩm mới")
+      .col-12.text-center
+        h1(class="text-center-noneBoot") SẢN PHẨM MỚI
+
 
     .row
       each item in productsNew
@@ -36,6 +37,6 @@ block main
             .inner-content
               h3.inner-title
                 a(href=`/products/detail/${item.slug}`) #{item.title}
-              .inner-price-new #{item.priceNew}$
-              .inner-price-old #{item.price}$
+              .inner-price-new #{currency(item.newPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+              .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
               .inner-discount -#{item.discountPercentage}%

@@ -212,6 +212,21 @@ if(upload){
   })
 }
 // end upload-image
+// // upload logo footer
+// const uploadFooter = document.querySelector("[upload-image-footer]")
+// if(uploadFooter){
+//   const uploadImageInputFooter = document.querySelector("[upload-image-input-footer]")
+//   const uploadImagePreviewFooter = document.querySelector("[upload-image-preview-footer]")
+//   uploadImageInputFooter.addEventListener("change", () => {
+//     const file = uploadImageInputFooter.files[0]
+//     if(file){
+//       uploadImagePreviewFooter.src = URL.createObjectURL(file)
+//     }
+//   })
+// }
+// // end upload logo footer
+
+
 //sort-criteria
 const sort = document.querySelector("[sort]")
 if(sort){

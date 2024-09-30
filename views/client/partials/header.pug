@@ -5,7 +5,7 @@ header.header
       .col-2.p-0
         .inner-logo
           a(href="/")
-            img(src="/client/images/logo.png", alt="Logo")
+            img(src=(generalSetting.logo), alt="Logo")
       .col-3.p-0
         .inner-menu
           ul.d-flex
@@ -34,12 +34,12 @@ header.header
                     class="position-absolute submit-button-header search-button-toggle hide"
                   ) <i class="fa-solid fa-magnifying-glass"></i>
       else
-        .col-4.p-0
+        .col-5.p-0
             form(
               action="/search"
               method="GET"
             ) 
-              div(class="position-relative text-size form-group d-flex mb-0 mr-2")
+              div(class="position-relative form-group d-flex mb-0 mr-2")
                 input(
                   type="text"
                   placeholder="Bạn đang tìm sản phẩm nào?"

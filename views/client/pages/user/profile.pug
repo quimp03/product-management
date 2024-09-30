@@ -1,0 +1,15 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+block main
+  .container.my-3
+    .row
+      .col-12
+        h1(class="text-center text-center-noneBoot") TÀI KHOẢN CỦA BẠN
+  hr
+  .row
+    .col-4.ml-4
+      h5 Thông tin tài khoản
+      hr
+      div() #{inforUser.fullName}
+      div() #{inforUser.email}
+      div(class="mb-4") Vietnam

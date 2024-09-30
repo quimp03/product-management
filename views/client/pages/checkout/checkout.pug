@@ -36,10 +36,13 @@ block main
                   td #{currency(item.inforProduct.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
           
           h3(class="text-right") Tổng đơn hàng: #{currency(cartDetail.totalPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+    hr
     if(cartDetail.products.length > 0)
       .row
-        .col-12
-          .card.p-4.my-4
+        .col-4
+        .col-8.mt-4
+          h4 Thông tin thanh toán
+          .p-4
             form(
               action="/checkout/order"
               method="POST"
@@ -74,5 +77,5 @@ block main
               div(class="form-group")
                 button(
                   type="submit"
-                  class="btn btn-success btn-block"
+                  class="btn add-product btn-block"
                 ) ĐẶT HÀNG
