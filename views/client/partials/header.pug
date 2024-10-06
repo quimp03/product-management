@@ -9,11 +9,15 @@ header.header
       .col-3.p-0
         .inner-menu
           ul.d-flex
-            li
-              a(href="/") Trang chủ
+            li(class="under-general")
+              a(href="/" class="d-block underline") Trang chủ
+              span(class="under-effect")
             li(class="sub-menu")
               a(href="/products") Sản phẩm
               +sub-menu(layoutProductCategory)
+            li(class="under-general") 
+              a(href="/contact" class="d-block underline") Liên hệ
+              span(class="under-effect")  
       if(user)
           .col-3.p-0
             form(

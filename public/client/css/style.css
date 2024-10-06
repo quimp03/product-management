@@ -36,10 +36,6 @@
 .header .inner-menu a {
   color: white
 }
-.header .inner-menu a:hover {
-  color: red;
-  text-decoration: none;
-}
 .header .inner-menu > ul > li {
   margin-left: 20px;
 }
@@ -275,6 +271,20 @@
 .search-header:hover ~ .underline-search{
   width: 100%;
 }
+.under-general{
+  position: relative
+}
+.under-effect{
+  position: absolute;
+  border-bottom: 1px solid white;
+  width: 0%;
+  left: 0%;
+  transition: 0.3s;
+}
+.underline:hover ~ .under-effect{
+  width: 100%;
+}
+
 .submit-button-header{
   border: none;
   outline: none;
@@ -430,6 +440,31 @@
   cursor: pointer;
   color: rgba(88, 85, 85, 0.2);
   transition: color 0.5s ease-in;
-
+}
+.text-contact{
+  margin-top: 150px;
+}
+.inner-footer ul{
+  list-style: none;
+}
+.inner-footer a::after{
+  content: ''; 
+  margin-top:10px;
+  height: 1px; 
+  background: black; 
+  position: absolute; 
+  left: 0;
+  bottom: 0;
+  width: 0; 
+  transition: width 0.3s ease; 
+  transform: translateY(2px);
+}
+.inner-footer a:hover::after{
+width: 100%;
+}
+.underline-footer:hover{
+text-decoration: underline;
+text-decoration-color: black;
 }
 /* end footer */
+
