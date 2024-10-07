@@ -1,13 +1,17 @@
 const systemConfig = require("../../config/system")
 const Role = require("../../model/role.model")
 module.exports.index = async(req, res) => {
-    const roles = await Role.find({
-        deleted: false
-    })
-    res.render(`admin/pages/role/index.pug`, {
-        pageTitle: "Nhóm quyền",
-        records: roles
-    })
+    try {
+        const roles = await Role.find({
+            deleted: false
+        })
+        res.render(`admin/pages/role/index.pug`, {
+            pageTitle: "Nhóm quyền",
+            records: roles
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 module.exports.create = async(req, res) => {
     res.render("admin/pages/role/create.pug", {
@@ -26,15 +30,19 @@ module.exports.creatPost = async(req, res) => {
  res.redirect(`/${systemConfig.prefixAdmin}/roles`)
 }
 module.exports.edit = async(req, res) => {
-    const id = req.params.id
-    const role = await Role.findOne({
-        _id: id,
-        deleted: false
-    })
-    res.render(`${systemConfig.prefixAdmin}/pages/role/edit`, {
-        pageTitle: "Chỉnh sửa nhóm quyền",
-        role: role
-    })
+    try {
+        const id = req.params.id
+        const role = await Role.findOne({
+            _id: id,
+            deleted: false
+        })
+        res.render(`${systemConfig.prefixAdmin}/pages/role/edit`, {
+            pageTitle: "Chỉnh sửa nhóm quyền",
+            role: role
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 module.exports.editPatch = async(req, res) => {
     try {   
@@ -49,35 +57,47 @@ module.exports.editPatch = async(req, res) => {
     res.redirect(`/${systemConfig.prefixAdmin}/roles`)
 }
 module.exports.delete = async(req, res) => {
-    const id = req.params.id 
-    await Role.updateOne({
-        _id: id
-    }, {
-        deleted: true
-    })
-    req.flash("success", "Xóa nhóm quyền thành công!")
-    res.redirect("back")
+    try {
+        const id = req.params.id 
+        await Role.updateOne({
+            _id: id
+        }, {
+            deleted: true
+        })
+        req.flash("success", "Xóa nhóm quyền thành công!")
+        res.redirect("back")
+    } catch (error) {
+        console.log(error)
+    }
 }
 module.exports.detail = async(req, res) => {
-    const id = req.params.id 
-    const role = await  Role.findOne({
-        _id: id,
-        deleted: false
-    })
-    res.render(`${systemConfig.prefixAdmin}/pages/role/detail.pug`, {
-        pageTitle: "Chi tiết nhóm quyền",
-        role: role
-    })
+    try {
+        const id = req.params.id 
+        const role = await  Role.findOne({
+            _id: id,
+            deleted: false
+        })
+        res.render(`${systemConfig.prefixAdmin}/pages/role/detail.pug`, {
+            pageTitle: "Chi tiết nhóm quyền",
+            role: role
+        })
+    } catch (error) {
+        console.log(error)
+    }  
 }
 module.exports.permisstion = async(req, res) => {
-    const find = {
-        deleted: false
+    try {
+        const find = {
+            deleted: false
+        }
+        const roles = await Role.find(find)
+        res.render(`${systemConfig.prefixAdmin}/pages/role/permission.pug`, {
+            pageTitle: "Phân quyền",
+            records: roles
+        })
+    } catch (error) {
+        console.log(error)
     }
-    const roles = await Role.find(find)
-    res.render(`${systemConfig.prefixAdmin}/pages/role/permission.pug`, {
-        pageTitle: "Phân quyền",
-        records: roles
-    })
 }
 module.exports.permissionPatch = async(req, res) => {
     try {
