@@ -1,6 +1,7 @@
 const systemConfig = require("../../config/system")
 const md5 = require("md5")
 const Account = require("../../model/account.model")
+// GET /user/login
 module.exports.login = (req, res) => {
     res.render(`${systemConfig.prefixAdmin}/pages/auth/login`, {
         pageTitle: "Login"

@@ -4,6 +4,20 @@ include ../../mixins/alert.pug
 block main
   +alert-success(5000)
   +alert-error(5000)
+  div(class="slide-show")
+    div(class="list-images")
+      img(src="client/images/slideshow_1.webp", alt="slideshow_1")
+      img(src="client/images/slideshow_2.jpg", alt="slideshow_2")
+      img(src="client/images/slideshow_3.webp", alt="slideshow_3")
+      img(src="client/images/slideshow_4.webp", alt="slideshow_4")
+    div(class="btns")
+      div(class="btn-left btn-slide") <i class="fa-solid fa-chevron-left"></i>
+      div(class="btn-right btn-slide") <i class="fa-solid fa-chevron-right"></i>
+    div(class="index-images")
+      div(class="index-item index-item-0 active")
+      div(class="index-item index-item-1")
+      div(class="index-item index-item-2")
+      div(class="index-item index-item-3")
   .container.my-3
     .row
       .col-12.text-center
@@ -11,32 +25,40 @@ block main
 
     .row
       each item in productsFeatured
-        .col-4.mb-3
+        .col-3.mb-3
           .product-item
             .inner-image
               a(href=`/products/detail/${item.slug}`)
                 img(src=item.thumbnail, alt=item.title)
             .inner-content
-              h3.inner-title
-                a(href=`/products/detail/${item.slug}`) #{item.title}
-              .inner-price-new #{currency(item.newPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
-              .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
-              .inner-discount -#{item.discountPercentage}%
+              h3.inner-title 
+                a(href=`products/detail/${item.slug}` class="under-general") #{item.title}
+              .inner-price
+                if(item.discountPercentage != 0)
+                  .inner-price-new #{currency(item.newPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+                  .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+                else 
+                  | #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+              if(item.discountPercentage != 0)
+                .inner-discount #{item.discountPercentage}%
     .row
       .col-12.text-center
-        h1(class="text-center-noneBoot") SẢN PHẨM MỚI
-
-
+        h1(class="text-center-newProduct") SẢN PHẨM MỚI
     .row
       each item in productsNew
-        .col-4.mb-3
+        .col-3.mb-3
           .product-item
             .inner-image
               a(href=`/products/detail/${item.slug}`)
                 img(src=item.thumbnail, alt=item.title)
             .inner-content
-              h3.inner-title
-                a(href=`/products/detail/${item.slug}`) #{item.title}
-              .inner-price-new #{currency(item.newPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
-              .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
-              .inner-discount -#{item.discountPercentage}%
+              h3.inner-title 
+                a(href=`products/detail/${item.slug}` class="under-general") #{item.title}
+              .inner-price
+                if(item.discountPercentage != 0)
+                  .inner-price-new #{currency(item.newPrice, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+                  .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+                else 
+                  | #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+              if(item.discountPercentage != 0)
+                .inner-discount #{item.discountPercentage}%

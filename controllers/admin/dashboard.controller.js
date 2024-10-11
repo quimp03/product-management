@@ -39,6 +39,40 @@ module.exports.index = async(req, res) => {
         statistic.account.total = await Account.countDocuments({
             deleted: false
         })
+        // active
+        statistic.categoryProduct.active = await ProductCategory.countDocuments({
+            deleted: false,
+            status: "active"
+        })
+        statistic.product.active = await Product.countDocuments({
+            deleted: false,
+            status: "active"
+        })
+        statistic.user.active = await User.countDocuments({
+            deleted: false,
+            status: "active"
+        })
+        statistic.account.active = await Account.countDocuments({
+            deleted: false,
+            status: "active"
+        })
+        // inactive
+        statistic.categoryProduct.inactive = await ProductCategory.countDocuments({
+            deleted: false,
+            status: "inactive"
+        })
+        statistic.product.inactive = await Product.countDocuments({
+            deleted: false,
+            status: "inactive"
+        })
+        statistic.user.inactive = await User.countDocuments({
+            deleted: false,
+            status: "inactive"
+        })
+        statistic.account.inactive = await Account.countDocuments({
+            deleted: false,
+            status: "inactive"
+        })
         res.render("admin/pages/dashboard/index", {
             pageTitle: "Trang tổng quan",
             statistic: statistic

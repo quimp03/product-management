@@ -9,7 +9,7 @@ block main
 
     .row
       each item in products
-        .col-4.mb-3
+        .col-3.mb-3
           .product-item
             .inner-image
               a(href=`/products/detail/${item.slug}`)
@@ -17,6 +17,6 @@ block main
             .inner-content
               h3.inner-title
                 a(href=`/products/detail/${item.slug}`) #{item.title}
-              .inner-price-new #{item.priceNew}$
-              .inner-price-old #{item.price}$
+              .inner-price-new #{currency(item.priceNew, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
+              .inner-price-old #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
               .inner-discount -#{item.discountPercentage}%

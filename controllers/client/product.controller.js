@@ -76,7 +76,7 @@ module.exports.slugCategory = async(req, res) => {
                 status: 'active'
             }).sort({position: "desc"})
             for (const product of products) {
-                product.newPrice = product.price * ((100 - product.discountPercentage)/100).toFixed(0)
+                product.newPrice = (product.price * (100 - product.discountPercentage)/100).toFixed(0)
             }
             res.render("client/pages/products/index.pug", {
                 pageTitle: productCategory.title,

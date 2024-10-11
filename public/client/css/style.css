@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 .header {
-  border-bottom: 1px solid #ddd; 
   padding: 0 10px 0 7px;
   background-color: black;
   top: 0px;
@@ -65,13 +64,17 @@
 /* End box-head */
 
 /* product-item */
+.product-item .inner-content .inner-price-old {
+  text-decoration: line-through;
+  font-style: italic;
+}
 .product-item {
   overflow: hidden;
 }
 
 .product-item .inner-image {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4/4;
   background-color: #DCDCDC;
 }
 
@@ -93,17 +96,42 @@
   color: black;
 }
 .product-item .inner-content .inner-title a:hover {
-  text-decoration: none;
-  color: red
+  text-decoration: underline black;
 }
 .product-item .inner-content .inner-price{
   display: flex;
 }
 .product-item .inner-content .inner-price .inner-price-new {
-  font-size: 18px;
-  font-weight: 600;
-  color: green;
   margin-right: 10px;
+  font-weight: 500;
+}
+.product-item .inner-content .inner-price .inner-price-old {
+	text-decoration: line-through;
+  font-style: italic;
+}
+.product-item .inner-content .inner-discount {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: red;
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 8px;
+}
+.product-item .inner-content .inner-title a::after{
+  content: ''; 
+  margin-top:10px;
+  height: 1px; 
+  background: black; 
+  position: absolute; 
+  left: 0;
+  bottom: 0;
+  width: 0; 
+  transition: width 0.3s ease; 
+  transform: translateY(2px);
+}
+.product-item .inner-content .inner-title a:hover::after{
+  width: 100%;
 }
 /* sub-menu */
 .sub-menu {
@@ -146,28 +174,7 @@
 }
 /* End sub-menu */
 
-.product-item .inner-content .inner-price .inner-price-old {
-  font-size: 18px;
-  font-weight: 600;
-  color: red;
-	text-decoration: line-through;
-}
-.product-item .inner-content .inner-price-old{
-  font-size: 18px;
-  font-weight: 600;
-  color: black;
-	text-decoration: line-through;
-}
 
-.product-item .inner-content .inner-discount {
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  background: red;
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 8px;
-}
 
 /* End product-item */
 
@@ -191,18 +198,17 @@
 }
 
 .product-detail .inner-price-new {
-  color: green;
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: 500;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
 .product-detail .inner-price-old {
-  color: red;
   font-weight: 600;
   font-size: 20px;
   text-decoration: line-through;
   margin-bottom: 10px;
+  font-style: italic;
 }
 
 .product-detail .inner-percent {
@@ -223,14 +229,9 @@
 }
 
 .product-detail .inner-stock span {
-  color: #fff;
-  background: green;
-  font-weight: 600;
+  color: black;
   display: inline-block;
-  padding: 3px 6px;
-  border-radius: 8px;
 }
-
 .product-detail .inner-desc img {
   max-width: 100%;
 }
@@ -309,7 +310,12 @@
 /* text center body*/
 .text-center-noneBoot{
   font-size: 20px;
-  margin: 110px 0px 20px 0px;
+  margin: 90px 0px 20px 0px;
+  font-weight: bold;
+}
+.text-center-newProduct{
+  font-size: 20px;
+  padding-bottom: 20px;
   font-weight: bold;
 }
 .text-center-detail{
@@ -468,3 +474,63 @@ text-decoration-color: black;
 }
 /* end footer */
 
+/* slides show */
+.slide-show {
+  margin-top: 100px;
+  width: 100%vw; 
+  height: 750px;
+  position: relative; 
+  overflow: hidden; 
+}
+
+.list-images {
+  display: flex; 
+  transition: 0.5s; 
+}
+
+.list-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+.btn-slide{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.btn-slide{
+  font-size: 50px;
+  color: #f8f8f8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-slide:hover{
+  color: gray;
+}
+.btn-left{
+  left: 8px;
+}
+.btn-right{
+  right: 8px;
+}
+.index-images{
+  display: flex;
+  bottom: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.index-item{
+  border: solid 1px white;
+  padding: 8px; 
+  margin: 7px;
+  border-radius: 50%;
+}
+.index-item:hover{
+  background-color: white;
+  transition: 0.5s;
+}
+.active{
+  background-color: white;
+}
+/* end slides show

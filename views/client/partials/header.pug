@@ -72,6 +72,7 @@ header.header
             a(href="/user/login")
               <i class="fa fa-user" aria-hidden="true"></i>
           a(href="/cart" class="cart-header")
+           if(miniCart)
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             |(#{miniCart.products.length})
           if(user)

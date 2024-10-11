@@ -49,5 +49,6 @@ block main
     .container.my-5
       .row
         .col-12
-          h1(class="text-center") MÔ TẢ SẢN PHẨM
+         if(product.description)
+          h4(class="text-center") MÔ TẢ SẢN PHẨM
           .inner-desc !{product.description}

@@ -9,7 +9,7 @@ module.exports.index = async (req, res) => {
       }
       const countRecords = await ProductCategory.countDocuments(find)
       const objectPagination =  paginationHelper(req, countRecords)
-      const products = await ProductCategory.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
+      const products = await ProductCategory.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip).sort({position: "asc"})
       res.render("admin/pages/productCategory/index.pug", {
           pageTitle: "Danh mục sản phẩm",
           products: products,

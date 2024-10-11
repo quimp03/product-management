@@ -58,3 +58,50 @@ if (formConfirmPassword) {
     }
   });
 }
+// slide show
+const listImage = document.querySelector(".list-images")
+const images = listImage.getElementsByTagName("img")
+const btnLeft = document.querySelector('.btn-left')
+const btnRight = document.querySelector('.btn-right')
+let currentPosition = 0
+// hàm xử lí action slide img right
+const handleChangeSlide = () => {
+  if(currentPosition == images.length - 1){
+    currentPosition = 0
+    listImage.style.transform = `translateX(${0}px)`
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".index-item-" + currentPosition).classList.add("active")
+  }else{
+    currentPosition ++
+    let width = images[0].offsetWidth
+    listImage.style.transform = `translateX(${width * -1 * currentPosition}px)`
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".index-item-" + currentPosition).classList.add("active")
+  }
+}
+let handleEnventChageSlide = setInterval(handleChangeSlide, 5000)
+// xử lí action slide img right
+btnRight.addEventListener("click", () => {
+  clearInterval(handleEnventChageSlide)
+  handleChangeSlide()
+  handleEnventChageSlide = setInterval(handleChangeSlide, 5000)
+})
+// xử lí action slide img left
+btnLeft.addEventListener('click', () => {
+  clearInterval(handleEnventChageSlide)
+  if(currentPosition == 0){
+    currentPosition = images.length - 1
+    let width = images[0].offsetWidth
+    listImage.style.transform = `translateX(${width * -1 * currentPosition}px)`
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".index-item-" + currentPosition).classList.add("active")
+  }else{
+    currentPosition --
+    let width = images[0].offsetWidth
+    listImage.style.transform = `translateX(${width * -1 * currentPosition}px)`
+    document.querySelector(".active").classList.remove('active')
+    document.querySelector(".index-item-" + currentPosition).classList.add("active")
+  }
+  handleEnventChageSlide = setInterval(handleChangeSlide, 5000)
+})
+// end slide show

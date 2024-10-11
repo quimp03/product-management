@@ -104,3 +104,10 @@
   display: none;
 }
 /* End image-preview */
+
+
+/* set width of title product */
+.set_width_productTitle{
+  max-width: 140px;
+}
+/* end set width of title product */

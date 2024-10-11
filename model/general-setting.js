@@ -8,6 +8,7 @@ const generalSettingSchemal = new mongoose.Schema({
     copyright: String,
     faceBook: String,
     tikTok: String,
+    gitHub: String,
 },{
     timestamps: true
 }

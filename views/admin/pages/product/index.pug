@@ -100,14 +100,14 @@ block main
                               width="100px"
                               height="auto"
                           )
-                      td #{item.title}
-                      td #{item.price}$
+                      td.set_width_productTitle #{item.title}
+                      td #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
                       td
                         input(
                           name="position"
                           value=item.position
                           type="number"
-                          style="width: 60px;"
+                          style="width: 40px;"
                           min="1"
                         )
                       td
@@ -146,7 +146,6 @@ block main
                             href=`/${prefixAdmin}/products/detail/${item.id}`
                             class="btn btn-info btn-sm ml-1"
                           ) Chi tiết
-
     +pagination(objectPagination)
   else 
     h1 Bạn không có quyền truy cập
