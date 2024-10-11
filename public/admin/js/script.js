@@ -202,14 +202,17 @@ if(showAlert){
 //upload-image
 const upload = document.querySelector("[upload-image]")
 if(upload){
-  const uploadImageInput = document.querySelector("[upload-image-input]")
-  const uploadImagePreview = document.querySelector("[upload-image-preview]")
-  uploadImageInput.addEventListener("change", () => {
-    const file = uploadImageInput.files[0]
-    if(file){
-      uploadImagePreview.src = URL.createObjectURL(file)
-    }
+  const uploadImageInputs = document.querySelectorAll("[upload-image-input]")
+  const uploadImagePreviews = document.querySelectorAll("[upload-image-preview]")
+  uploadImageInputs.forEach((img, index) => {
+    img.addEventListener("change", () => {
+      const file = img.files[0]
+      if(file){
+        uploadImagePreviews[index].src = URL.createObjectURL(file)
+      }
+    })
   })
+  
 }
 // end upload-image
 

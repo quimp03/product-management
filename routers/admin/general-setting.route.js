@@ -5,5 +5,17 @@ const upload = multer()
 const router = express()
 const controller = require("../../controllers/admin/general-setting")
 router.get("/general" , controller.index)
-router.patch("/general",upload.single("logo"), uploadCloud.uploadSingle, controller.settingGeneralPatch)
+
+router.patch("/general", 
+    upload.fields([
+      { name: 'logo', maxCount: 1 },
+      { name: 'slideshow1', maxCount: 1 },
+      { name: 'slideshow2', maxCount: 1 },
+      { name: 'slideshow3', maxCount: 1 },
+      { name: 'slideshow4', maxCount: 1 },
+    ]), 
+    uploadCloud.uploadMultiple, 
+    controller.settingGeneralPatch
+  );
+  
 module.exports = router

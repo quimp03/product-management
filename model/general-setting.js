@@ -9,6 +9,7 @@ const generalSettingSchemal = new mongoose.Schema({
     faceBook: String,
     tikTok: String,
     gitHub: String,
+    slideshow: { type: [String], default: [] },
 },{
     timestamps: true
 }

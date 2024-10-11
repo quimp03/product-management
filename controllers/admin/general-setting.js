@@ -11,20 +11,22 @@ module.exports.index = async(req, res) => {
         console.log(error)
     }  
 }
-module.exports.settingGeneralPatch = async(req, res) => {
+module.exports.settingGeneralPatch = async (req, res) => {
     try {
-        const record = await GeneralSetting.findOne()
-        if(record){
-         await GeneralSetting.updateOne({
-             _id: record.id
-         }, req.body)
-             req.flash("success", "Cập nhật thông tin thành công!")
-        }else{
-             const general = new GeneralSetting(req.body)
-             await general.save()
+        const record = await GeneralSetting.findOne();
+        if (record) {
+            await GeneralSetting.updateOne({ _id: record.id }, req.body);
+            req.flash("success", "Cập nhật thông tin thành công!");
+        } else {
+            const general = new GeneralSetting(req.body);
+            await general.save();
         }
-        res.redirect("back")
+        
+        res.redirect("back");
+
     } catch (error) {
-        console.log(error)
-    } 
-}
+        console.log(error);
+        req.flash("error", "Có lỗi xảy ra, vui lòng thử lại.");
+        res.redirect("back"); 
+    }
+};

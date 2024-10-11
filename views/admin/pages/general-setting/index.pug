@@ -36,15 +36,24 @@ block main
         upload-image-preview
         src=(generalSetting ? generalSetting.logo : "")
       )
-    div(class="form-group")
-      label(for="phone") Số điện thoại
-      input(
-        type="text"
-        class="form-control"
-        id="phone"
-        name="phone"
-        value=(generalSetting ? generalSetting.phone : "")
-      )
+    label(for="slideshow") SlideShow
+    .slide-show.d-flex
+      each img, index in generalSetting.slideshow
+        div(class="form-group")
+          label(for=`slideshow${index}`) Slideshow-#{index + 1}
+          input(
+            type="file"
+            class="form-control-file"
+            id=`slideshow${index}`
+            name=`slideshow${index + 1}`
+            accept="image/*"
+            upload-image-input
+          )
+          img(
+            class="image-preview"
+            upload-image-preview
+            src=img
+          )
     div(class="form-group")
       label(for="email") Email
       input(

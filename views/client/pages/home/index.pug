@@ -6,10 +6,10 @@ block main
   +alert-error(5000)
   div(class="slide-show")
     div(class="list-images")
-      img(src="client/images/slideshow_1.webp", alt="slideshow_1")
-      img(src="client/images/slideshow_2.jpg", alt="slideshow_2")
-      img(src="client/images/slideshow_3.webp", alt="slideshow_3")
-      img(src="client/images/slideshow_4.webp", alt="slideshow_4")
+      img(src=generalSetting.slideshow[0], alt="slideshow_1")
+      img(src=generalSetting.slideshow[1], alt="slideshow_2")
+      img(src=generalSetting.slideshow[2], alt="slideshow_3")
+      img(src=generalSetting.slideshow[3], alt="slideshow_4")
     div(class="btns")
       div(class="btn-left btn-slide") <i class="fa-solid fa-chevron-left"></i>
       div(class="btn-right btn-slide") <i class="fa-solid fa-chevron-right"></i>
