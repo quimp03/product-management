@@ -26,8 +26,8 @@ To set up the project locally, follow these steps:
     ```bash
     npm start
 2. Open your web browser and navigate to home page: exameple port == 3000
-   admin page: http://localhost:3000/admin/auth/login 
-   client page: http://localhost:3000
+   - admin page: http://localhost:3000/admin/auth/login 
+   - client page: http://localhost:3000
 4. Enjoy the website :)))
 
 
