@@ -6,18 +6,14 @@ block main
   +alert-error(5000)
   div(class="slide-show")
     div(class="list-images")
-      img(src=generalSetting.slideshow[0], alt="slideshow_1")
-      img(src=generalSetting.slideshow[1], alt="slideshow_2")
-      img(src=generalSetting.slideshow[2], alt="slideshow_3")
-      img(src=generalSetting.slideshow[3], alt="slideshow_4")
+      each item, index in generalSetting.slideshow
+        img(src=item, alt=`slideshow_${index + 1}`)
     div(class="btns")
       div(class="btn-left btn-slide") <i class="fa-solid fa-chevron-left"></i>
       div(class="btn-right btn-slide") <i class="fa-solid fa-chevron-right"></i>
     div(class="index-images")
-      div(class="index-item index-item-0 active")
-      div(class="index-item index-item-1")
-      div(class="index-item index-item-2")
-      div(class="index-item index-item-3")
+      each item, index in generalSetting.slideshow
+        div(class=`index-item index-item-${index} ${index === 0 ? 'active' : ''}`)
   .container.my-3
     .row
       .col-12.text-center

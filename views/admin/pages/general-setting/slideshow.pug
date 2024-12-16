@@ -1,0 +1,53 @@
+extends ../../layouts/default 
+include ../../mixins/alert
+block main
+    +alert-error()
+    +alert-success()
+    form(
+        action=`/${prefixAdmin}/settings/slideshow?_method=PATCH`
+        method="POST"
+        enctype="multipart/form-data"
+    )
+        .row  
+            .col-9
+            .col-3
+                button(
+                    type="button"
+                    class="btn btn-success "
+                    id="add-upload-btn"
+                    onclick="addUploadField()"
+                ) + Thêm
+        if record.slideshow.length > 0
+            each item, index in record.slideshow
+                div(class="form-group slideshow-container d-flex flex-wrap")
+                    div(class="upload-wrapper")
+                        input(
+                            type="file"
+                            class="form-control-file"
+                            name="slideshow"
+                            accept="image/*"
+                            onchange="previewImage(this)"
+                        )
+                        img(
+                            class="image-preview"
+                            style="max-width: 150px; display: block;"
+                            src= item
+                        )
+        else
+            div(class="form-group slideshow-container d-flex flex-wrap")
+                div(class="upload-wrapper")
+                    input(
+                        type="file"
+                        class="form-control-file"
+                        name="slideshow"
+                        accept="image/*"
+                        onchange="previewImage(this)"
+                    )
+                    img(
+                        class="image-preview"
+                        style="max-width: 150px; display: none;"
+                    )
+        button(
+            type="submit"
+            class="btn btn-primary ml-1"
+        ) Cập nhật

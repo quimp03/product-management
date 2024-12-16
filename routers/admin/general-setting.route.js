@@ -7,15 +7,13 @@ const controller = require("../../controllers/admin/general-setting")
 router.get("/general" , controller.index)
 
 router.patch("/general", 
-    upload.fields([
-      { name: 'logo', maxCount: 1 },
-      { name: 'slideshow1', maxCount: 1 },
-      { name: 'slideshow2', maxCount: 1 },
-      { name: 'slideshow3', maxCount: 1 },
-      { name: 'slideshow4', maxCount: 1 },
-    ]), 
-    uploadCloud.uploadMultiple, 
+    upload.single("logo"),
+    uploadCloud.uploadSingle, 
     controller.settingGeneralPatch
-  );
-  
+);
+router.get("/slideshow",controller.slideShow);
+router.patch("/slideshow",
+  upload.array("slideshow", 10),
+  uploadCloud.uploadMultiple,
+  controller.slideShowPatch)
 module.exports = router

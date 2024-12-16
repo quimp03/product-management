@@ -100,6 +100,7 @@ module.exports.edit = async(req, res) => {
 module.exports.editPatch = async(req, res)=> {
     try {
         const id = req.params.id
+        req.body.password = md5(req.body.password)
         const account = await Account.updateOne({
             _id: id,
             deleted: false

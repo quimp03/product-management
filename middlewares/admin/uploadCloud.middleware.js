@@ -32,50 +32,27 @@ module.exports.uploadSingle =  (req, res, next) => {
     }
 }
 module.exports.uploadMultiple = (req, res, next) => {
-  const uploadPromises = [];
+    req.body.slideshow = []; // Khởi tạo mảng slideshow
+    const uploadPromises = req.files
+        .filter(file => file.fieldname === "slideshow") // Lọc file thuộc fieldname "slideshow"
+        .map(file => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream((error, result) => {
+                    if (error) {
+                        return reject(error);
+                    }
+                    req.body.slideshow.push(result.url); // Lưu URL vào mảng slideshow
+                    resolve();
+                });
+                streamifier.createReadStream(file.buffer).pipe(stream);
+            });
+        });
 
-  // Upload logo nếu có
-  if (req.files.logo && req.files.logo.length > 0) {
-      uploadPromises.push(new Promise((resolve, reject) => {
-          const stream = cloudinary.uploader.upload_stream((error, result) => {
-              if (result) {
-                  req.body.logo = result.url; // Lưu URL vào req.body
-                  resolve();
-              } else {
-                  reject(error);
-              }
-          });
-          streamifier.createReadStream(req.files.logo[0].buffer).pipe(stream);
-      }));
-  }
-
-  // Upload slideshow
-  for (let i = 1; i <= 5; i++) {
-      if (req.files[`slideshow${i}`] && req.files[`slideshow${i}`].length > 0) {
-          uploadPromises.push(new Promise((resolve, reject) => {
-              const stream = cloudinary.uploader.upload_stream((error, result) => {
-                  if (result) {
-                      if (!req.body.slideshow) {
-                          req.body.slideshow = [];
-                      }
-                      req.body.slideshow.push(result.url); // Lưu URL vào mảng slideshow
-                      resolve();
-                  } else {
-                      reject(error);
-                  }
-              });
-              streamifier.createReadStream(req.files[`slideshow${i}`][0].buffer).pipe(stream);
-          }));
-      }
-  }
-
-  // Chờ tất cả các upload hoàn thành
-  Promise.all(uploadPromises)
-      .then(() => {
-          next(); // Tiếp tục xử lý nếu không có lỗi
-      })
-      .catch(error => {
-          console.error(error);
-          res.status(500).send("Error uploading images");
-      });
+    // Chờ tất cả các upload hoàn thành
+    Promise.all(uploadPromises)
+        .then(() => next()) // Tiếp tục xử lý nếu không có lỗi
+        .catch(error => {
+            console.error("Error uploading slideshow:", error);
+            res.status(500).json({ error: "Failed to upload slideshow", details: error.message });
+        });
 };

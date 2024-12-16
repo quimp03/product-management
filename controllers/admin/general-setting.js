@@ -30,3 +30,30 @@ module.exports.settingGeneralPatch = async (req, res) => {
         res.redirect("back"); 
     }
 };
+module.exports.slideShow = async(req, res) => {
+    const record = await GeneralSetting.findOne()
+    res.render(`${systemConfig.prefixAdmin}/pages/general-setting/slideshow.pug`, {
+        record: record
+    })
+}
+module.exports.slideShowPatch = async (req, res) => {
+    try {
+        const record = await GeneralSetting.findOne(); 
+        console.log(req.body.slideshow)
+        if (req.body.slideshow.length > 0) {
+            await GeneralSetting.updateOne(
+                { _id: record.id }, 
+                { slideshow: req.body.slideshow }
+            );
+            req.flash("success", "Cập nhật thành công!");
+            res.redirect("back");
+        } else {
+            req.flash("error", "Dữ liệu slideshow không hợp lệ!");
+            res.redirect("back");
+        }
+    } catch (error) {
+        req.flash("error", "Cập nhật thất bại!");
+        console.log(error);
+        res.redirect("back");
+    }
+};

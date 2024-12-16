@@ -85,7 +85,7 @@ module.exports.deleteProduct = async(req, res) => {
         console.log(error)
     }
 }
-module.exports.updateQuantityProdcut = async(req, res) => {
+module.exports.updateQuantityProdut = async(req, res) => {
     try {
         const productId = req.params.productId
         const quantity = req.params.quantity

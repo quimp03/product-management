@@ -66,7 +66,7 @@ module.exports.changeStatus = async(req,res) => {
             status: status
         })
         req.flash("success", "Cập nhật trạng thái thành công!")
-        res.redirect("back")
+        res.redirect(req.get("Referrer"))
     } catch (error) {
         console.log(error)   
     }   
@@ -90,7 +90,6 @@ module.exports.changeMultiPatch = async(req, res) => {
                 req.flash("success", "Cập nhật trạng thái thành công!")
                 break
             case "change-position":
-                // c2
                 for (const item of ids) {
                     const newArr = item.split("-")
                     const id = newArr[0]

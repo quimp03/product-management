@@ -382,3 +382,42 @@ if(listBtnDeleteAccount.length > 0){
   })
 }
 //end button delete account
+
+
+// Hàm thêm khung upload mới
+function addUploadField() {
+  // Tạo một div mới cho khung upload
+  const uploadContainer = document.createElement("div");
+  uploadContainer.className = "upload-wrapper";
+  uploadContainer.innerHTML = `
+    <input
+      type="file"
+      class="form-control-file"
+      name="slideshow"
+      accept="image/*"
+      onchange="previewImage(this)"
+    />
+    <img
+      class="image-preview"
+      src=""
+      style="max-width: 150px; display: none;"
+    />
+  `;
+
+  // Thêm div mới vào slideshow container
+  document.querySelector(".slideshow-container").appendChild(uploadContainer);
+}
+
+// Hàm preview ảnh khi chọn file
+function previewImage(input) {
+  const file = input.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = input.nextElementSibling; // Chọn phần tử img
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  }
+}

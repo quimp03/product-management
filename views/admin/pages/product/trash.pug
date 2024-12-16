@@ -60,7 +60,7 @@ block main
                   height="auto"
                 )
               td #{item.title}
-              td #{item.price}$
+              td #{currency(item.price, {symbol: "",separator: ',', decimal: ',', precision: 3}).format()}₫
               td
                 if (item.status == "active")
                   a(

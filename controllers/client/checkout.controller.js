@@ -66,7 +66,6 @@ module.exports.orderPost = async(req, res) => {
 module.exports.success = async(req, res) => {
     try {
         const orderId = req.params.orderId
-    
         const order = await Order.findOne({
             _id: orderId
         })
@@ -81,6 +80,7 @@ module.exports.success = async(req, res) => {
             item.thumbnail = product.thumbnail
             order.totalPrice += item.totalPrice
         }
+        req.flash("success", "Đặt hàng thành công!")
         res.render("client/pages/checkout/success.pug", {
             pageTitle: "Đơn hàng của bạn",
             order: order

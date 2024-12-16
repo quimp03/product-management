@@ -5,7 +5,7 @@ module.exports = (req, countRecord) => {
     }
     //Lay page tren router
     if(req.query.page){
-            objectPagination.currentPage = parseInt(req.query.page)
+        objectPagination.currentPage = parseInt(req.query.page)
     }
     //cong thuc skip theo so page
     objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItems
