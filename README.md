@@ -29,5 +29,7 @@ To set up the project locally, follow these steps:
    - admin page: http://localhost:3000/admin/auth/login 
    - client page: http://localhost:3000
 4. Enjoy the website :)))
-
+## Deploy on vercel
+I use vercel Platfrom in order to deploy my web on the online
+<div>You can check: https://product-management-felix.vercel.app</div>
 
