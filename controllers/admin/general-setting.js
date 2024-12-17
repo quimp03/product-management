@@ -39,7 +39,6 @@ module.exports.slideShow = async(req, res) => {
 module.exports.slideShowPatch = async (req, res) => {
     try {
         const record = await GeneralSetting.findOne(); 
-        console.log(req.body.slideshow)
         if (req.body.slideshow.length > 0) {
             await GeneralSetting.updateOne(
                 { _id: record.id }, 
