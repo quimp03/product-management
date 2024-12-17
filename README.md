@@ -30,6 +30,6 @@ To set up the project locally, follow these steps:
    - client page: http://localhost:3000
 4. Enjoy the website :)))
 ## Deploy on vercel
-I use vercel Platfrom in order to deploy my web on the online
+I use [Vercel Platform](https://vercel.com) in order to deploy my web online.
 <div>You can check: https://product-management-felix.vercel.app</div>
 
