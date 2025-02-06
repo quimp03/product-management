@@ -17,6 +17,7 @@ module.exports.index = async (req, res) => {
       })
     } catch (error) {
       console.log(error)
+      res.redirect("back"); 
     }
 }
 // [GET] /admin/product-category
@@ -32,6 +33,7 @@ module.exports.create = async(req, res) => {
       })
     } catch (error) {
       console.log(error)
+      res.redirect("back"); 
     }
 }
 
@@ -40,35 +42,36 @@ module.exports.createPost = async (req, res) => {
   try {
     if(req.body.position){
       req.body.position = parseInt(req.body.position)
-  }else{
+    }else{
       const countProductCategory = await ProductCategory.countDocuments()
       req.body.position = countProductCategory + 1
-  }
-  const productCategory = new ProductCategory(req.body)
-  await productCategory.save()
+    }
+      const productCategory = new ProductCategory(req.body)
+      await productCategory.save()
+      res.redirect(`/${systemConfig.prefixAdmin}/products-category`)
   } catch (error) {
     console.log(error)
-    return
+    res.redirect("back")
   }
-    res.redirect(`/${systemConfig.prefixAdmin}/products-category`)
-  };
+};
   // [PATCH] /admin/product-category/change-status
-  module.exports.changeStatus = async(req, res) => {
-    try {
-      const id = req.params.id
-      const status = req.params.status
-      await ProductCategory.updateOne({
-          _id: id,
-          deleted: false
-      },{
-          status: status
-      })
-      req.flash("success", "Thay đổi trạng thái danh mục sản phẩm thành công!")
-      res.redirect("back")
-    } catch (error) {
-      console.log(error)
-    }
+module.exports.changeStatus = async(req, res) => {
+  try {
+    const id = req.params.id
+    const status = req.params.status
+    await ProductCategory.updateOne({
+        _id: id,
+        deleted: false
+    },{
+        status: status
+    })
+    req.flash("success", "Thay đổi trạng thái danh mục sản phẩm thành công!")
+    res.redirect("back")
+  } catch (error) {
+    console.log(error)
+    res.redirect("back")
   }
+}
   // [DELETE] /admin/product-category/delete
 module.exports.deleteProductCategory = async(req, res) => {
     try {
@@ -82,6 +85,7 @@ module.exports.deleteProductCategory = async(req, res) => {
       res.redirect("back")
     } catch (error) {
       console.log(error)
+      res.redirect("back")
     }
 }
   // [GET] /admin/product-category/edit
@@ -102,6 +106,7 @@ module.exports.edit = async (req, res) => {
         records: newRecords,
       });
     } catch (error) {
+      console.log(error)
       res.redirect(`/${systemConfig.prefixAdmin}/productCategory`);
     }
   };
@@ -148,5 +153,6 @@ module.exports.detail = async(req, res) => {
     })
   } catch (error) {
     console.log(error)
+    res.redirect("back")
   }
 }

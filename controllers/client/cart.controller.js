@@ -29,8 +29,9 @@ module.exports.index = async (req, res) => {
           });
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
-  };
+};
 module.exports.addCartPost = async(req, res) => {
     try {
         const productId = req.params.id
@@ -63,11 +64,12 @@ module.exports.addCartPost = async(req, res) => {
             req.flash("success", "Thêm vào vỏ hàng thành công!")
         } catch (error) {
             console.log(error)
-            req.flash("error", "Thêm vào vỏ hàng không thàh công!")
+            req.flash("error", "Thêm vào vỏ hàng không thành công!")
         }
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.deleteProduct = async(req, res) => {
@@ -83,6 +85,7 @@ module.exports.deleteProduct = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.updateQuantityProdut = async(req, res) => {
@@ -101,5 +104,6 @@ module.exports.updateQuantityProdut = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }

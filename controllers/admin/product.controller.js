@@ -53,6 +53,7 @@ module.exports.index = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 // [PATCH] /admin/products/:status/:id
@@ -68,7 +69,8 @@ module.exports.changeStatus = async(req,res) => {
         req.flash("success", "Cập nhật trạng thái thành công!")
         res.redirect(req.get("Referrer"))
     } catch (error) {
-        console.log(error)   
+        console.log(error)
+        res.redirect("back"); 
     }   
 }
 module.exports.changeMultiPatch = async(req, res) => {
@@ -130,6 +132,7 @@ module.exports.changeMultiPatch = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.deleteItem = async(req, res) =>{
@@ -145,6 +148,7 @@ module.exports.deleteItem = async(req, res) =>{
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.trash = async(req, res) =>{
@@ -168,6 +172,7 @@ module.exports.trash = async(req, res) =>{
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.deleteItemVv = async(req, res) => {
@@ -183,6 +188,7 @@ module.exports.deleteItemVv = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.restoreItemPatch = async (req, res) => {
@@ -197,6 +203,7 @@ module.exports.restoreItemPatch = async (req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
   };
 module.exports.createItem = async(req, res) => {
@@ -212,6 +219,7 @@ module.exports.createItem = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }  
 }
 module.exports.createPost = async(req, res) => {
@@ -232,6 +240,7 @@ module.exports.createPost = async(req, res) => {
         res.redirect(`/${systemConfig.prefixAdmin}/products`)
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.edit = async(req, res) => {
@@ -252,6 +261,7 @@ module.exports.edit = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.editPost = async(req, res) => {
@@ -269,6 +279,7 @@ module.exports.editPost = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.detail = async(req, res) => {
@@ -284,5 +295,6 @@ module.exports.detail = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }  
 }

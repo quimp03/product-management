@@ -23,7 +23,8 @@ module.exports.index = async(req, res) => {
             accounts: accounts
         })
     } catch (error) {
-        console.log(error)   
+        console.log(error)
+        res.redirect("back");  
     }
 }
 module.exports.create = async(req, res) => {
@@ -37,6 +38,7 @@ module.exports.create = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.createPost = async(req, res) => {
@@ -60,6 +62,7 @@ module.exports.createPost = async(req, res) => {
         res.redirect(`/${systemConfig.prefixAdmin}/accounts`)
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.changeStatus = async(req, res) => {
@@ -95,6 +98,7 @@ module.exports.edit = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }  
 }
 module.exports.editPatch = async(req, res)=> {
@@ -109,6 +113,7 @@ module.exports.editPatch = async(req, res)=> {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.delete = async(req, res) => {
@@ -126,6 +131,7 @@ module.exports.delete = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }
 module.exports.detail = async(req, res) => {
@@ -145,5 +151,6 @@ module.exports.detail = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     }
 }

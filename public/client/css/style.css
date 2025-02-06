@@ -293,12 +293,19 @@
   background-color: white;
   z-index: 9999;
 }
+.submit-button-header i{
+  padding: 1px;
+  outline: none;
+}
+
+
 .input-find{
   border-radius: 0;
-  border: 0;
+  border: none;                           
   height: 30px;
   width: 339px;
   margin-left: auto;
+  border-right: 0px;
 }
 .input-find:focus {
   box-shadow: none;

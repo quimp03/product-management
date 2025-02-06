@@ -61,6 +61,7 @@ module.exports.orderPost = async(req, res) => {
         res.redirect(`/checkout/success/${order.id}`)
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.success = async(req, res) => {
@@ -87,5 +88,6 @@ module.exports.success = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }

@@ -11,6 +11,7 @@ module.exports.index = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.create = async(req, res) => {
@@ -42,6 +43,7 @@ module.exports.edit = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.editPatch = async(req, res) => {
@@ -68,6 +70,7 @@ module.exports.delete = async(req, res) => {
         res.redirect("back")
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.detail = async(req, res) => {
@@ -83,6 +86,7 @@ module.exports.detail = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }  
 }
 module.exports.permisstion = async(req, res) => {
@@ -97,6 +101,7 @@ module.exports.permisstion = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.permissionPatch = async(req, res) => {

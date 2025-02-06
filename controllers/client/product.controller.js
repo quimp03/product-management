@@ -16,6 +16,7 @@ module.exports.index = async(req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.detail = async(req, res) => {
@@ -43,6 +44,7 @@ module.exports.detail = async(req, res) => {
         }
     } catch (error) {
        console.log(error) 
+       res.redirect("back")
     }
 }
 module.exports.slugCategory = async(req, res) => {
@@ -87,6 +89,6 @@ module.exports.slugCategory = async(req, res) => {
         }
     } catch (error) {
         console.log(error)
-    }
-    
+        res.redirect("back")
+    }   
 }

@@ -38,6 +38,7 @@ module.exports.registerPost = async(req, res) => {
         res.redirect("/user/login")
     } catch (error) {
         console.log(error)
+        res.redirect("back")
     }
 }
 module.exports.loginPost = async(req, res) => {
@@ -73,6 +74,7 @@ module.exports.loginPost = async(req, res) => {
         res.redirect("/")
     } catch (error) {
         console.log(error)
+        res.redicrect("back")
     }
 }
 module.exports.logout = async(req, res) => {
@@ -109,6 +111,7 @@ module.exports.forgotPasswordPost = async(req, res) => {
         res.redirect(`/user/password/otp?email=${email}`)
     } catch (error) {
         console.log(error)
+        res.redicrect("back")
     }
 }
 module.exports.otp = async(req, res) => {
@@ -120,6 +123,7 @@ module.exports.otp = async(req, res) => {
         }) 
     } catch (error) {
         console.log(error)
+        res.redicrect("back")
     }
 }
 module.exports.optPost = async(req, res) => {
@@ -142,6 +146,7 @@ module.exports.optPost = async(req, res) => {
         res.render("client/pages/user/reset-password.pug")
     } catch (error) {
         console.log(error)
+        res.redicrect("back")
     }    
 }
 module.exports.resetPassword = async(req, res) => {
@@ -156,6 +161,7 @@ module.exports.resetPassword = async(req, res) => {
         res.redirect("/")
     } catch (error) {
         console.log(error)
+        res.redicrect("back")
     }
 }
 module.exports.profileUser =async(req, res ) => {
@@ -171,5 +177,6 @@ module.exports.profileUser =async(req, res ) => {
         })
     } catch (error) {
         console.log(error)
+        res.redicrect("back")
     }
 }

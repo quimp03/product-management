@@ -19,10 +19,10 @@ if(listButtonFilterStatus.length > 0){
 const formSearch = document.querySelector("#form-search");
 if(formSearch) {
   let url = new URL(window.location.href);
+  console.log(url)
   formSearch.addEventListener("submit", (event) => {
     event.preventDefault();
     const keyword = event.target.elements.keyword.value;
-
     if(keyword) {
       url.searchParams.set("keyword", keyword);
     } else {
@@ -230,7 +230,6 @@ if(sort){
   })
   const seletedKey = url.searchParams.get("sortKey")
   const seletedValue = url.searchParams.get("sortValue")
-  console.log(seletedValue)
   if(seletedKey && seletedValue){
     const stringSort = `${seletedKey}-${seletedValue}`
     const optionSelected = sortSelect.querySelector(`option[value='${stringSort}']`)

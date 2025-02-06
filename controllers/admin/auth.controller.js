@@ -34,6 +34,7 @@ module.exports.loginPost = async(req, res) => {
         res.redirect(`/${systemConfig.prefixAdmin}/accounts`)
     } catch (error) {
         console.log(error)
+        res.redirect("back"); 
     } 
 }
 module.exports.logout = async(req, res) => {
